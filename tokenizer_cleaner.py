@@ -8,7 +8,7 @@ sms_df = pd.read_excel('/home/clara/Documentos/LI/projet TAL/test_sms.xlsx')
 # Convertir la colonne qui contient les sms en chaîne de caractères (je sais pas pq sinon ça ne marche pas, alors que normalemnet c'est tout des strings)
 sms_df['SMS_ANON'] = sms_df['SMS_ANON'].astype(str)
 
-emojis = [":-)", ":]", ";)", ";-)", ":D", ":-D", ";P", ";-P", ":P", ":-P", "8)", "8-)", ":|", ":-|", ":(", ":-(", "o_O", "o.O", ":/", ":-/", ":O", ":-O", "O_O", "O.O", "o_o"]
+emojis = [":-)", "<3", ":]", ";)", ";-)", ":D", ":-D", ";P", ";-P", ":P", ":-P", "8)", "8-)", ":|", ":-|", ":(", ":-(", "o_O", "o.O", ":/", ":-/", ":O", ":-O", "O_O", "O.O", "o_o"]
 
 # Nettoyer et tokeniser le texte
 def clean_and_tokenize(text):
