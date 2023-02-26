@@ -76,18 +76,15 @@ for word in words.keys():
 
 def completion():
     
-    pre = ""
+    pre = input()
 
-    while pre != " ":
+    sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
+
+    if sort == {}:
+        return None
+    else:
+        print(sort)
         
-        pre = input()
-
-        sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
-
-        if sort == {}:
-            return None
-        else:
-            print(sort)
 
 completion()
 
