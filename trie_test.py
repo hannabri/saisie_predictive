@@ -1,32 +1,56 @@
 # %% 
 
-
 class TrieNode:
-    def __init__(self) -> None:
+    def __init__(self, char) -> None:
         self.children = {}
         self.endOfWord = False
+        self.char = char
+        self.count = 0
+
+    def increment_count(self):
+        self.count += 1
 
 class Trie:
     def __init__(self) -> None:
-        self.root = TrieNode()
+        self.root = TrieNode("")
 
-    def insert(self, word: str) -> None:
+    def insert(self, word: str, count) -> None:
         cur = self.root
 
         for c in word:
             if c not in cur.children:
-                cur.children[c] = TrieNode()
+                cur.children[c] = TrieNode(c)
             cur = cur.children[c]
         cur.endOfWord = True
+
+        if cur.endOfWord:
+            cur.count = count
+
+
+    def dfs(self, node, pre):
+ 
+       if node.endOfWord:
+           self.output[(pre + node.char)] = node.count
+        
+       for child in node.children.values():
+           self.dfs(child, pre + node.char)
     
-    def search(self, word: str) -> bool:
+    def search(self, prefix: str):
         cur = self.root
         
-        for c in word:
-            if c not in cur.children:
-                return False
-            cur = cur.children[c]
-        return cur.endOfWord
+        for c in prefix:
+            if c in cur.children:
+                cur = cur.children[c]
+            else:
+                return {}
+            
+        self.output = {}
+
+        self.dfs(cur, prefix[:-1])
+        
+
+        return self.output
+    
 
     def startsWith(self, prefix:str) -> bool:
         cur = self.root
@@ -44,9 +68,27 @@ prediction = Trie()
 
 # add words in our trie
 
-words = {"potatoe" : 3, "pizza" : 4, "pancake" : 1}
+words = {"potatoe" : 3, "pizza" : 4, "pancake" : 1, "biscuit" : 5}
 
-for key in words.keys():
-    prediction.insert(key)
+for word in words.keys():
+    prediction.insert(word, words[word])
+
+
+def completion():
+    
+    pre = ""
+
+    while pre != " ":
+        
+        pre = input()
+
+        sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
+
+        if sort == {}:
+            return None
+        else:
+            print(sort)
+
+completion()
 
     
