@@ -1,3 +1,6 @@
+# %% 
+
+
 class TrieNode:
     def __init__(self) -> None:
         self.children = {}
@@ -34,3 +37,16 @@ class Trie:
             cur = cur.children[c]
 
         return True
+
+# initiate new Trie
+
+prediction = Trie()
+
+# add words in our trie
+
+words = {"potatoe" : 3, "pizza" : 4, "pancake" : 1}
+
+for key in words.keys():
+    prediction.insert(key)
+
+    
