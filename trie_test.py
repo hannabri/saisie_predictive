@@ -68,7 +68,7 @@ prediction = Trie()
 
 # add words in our trie
 
-words = {"potatoe" : 3, "pizza" : 4, "pancake" : 1, "biscuit" : 5}
+words = {"potatoe" : 3, "pizza" : 4, "pancake" : 1, "biscuit" : 5, "radio" : 2, "tasse" : 4}
 
 for word in words.keys():
     prediction.insert(word, words[word])
@@ -77,14 +77,18 @@ for word in words.keys():
 def completion():
     
     pre = input()
+    while pre != " ":
+        print(pre)
 
-    sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
 
-    if sort == {}:
-        return None
-    else:
-        print(sort)
+        sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
+
+        if sort == {}:
+            return None
+        else:
+            print(sort)
         
+        pre = pre + input()
 
 completion()
 
