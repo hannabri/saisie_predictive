@@ -6,3 +6,5 @@ import tkinter as tk
 print("Tokenizing...")
 vocab = tokenize()
 print("Tokenization done.")
+
+#petit test
