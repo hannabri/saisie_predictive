@@ -1,21 +1,25 @@
 from trie_test import *
 from tokenizer_cleaner import *
 import tkinter as tk
+import pickle
 
 # initiate new Trie
 prediction = Trie()
 
 # add words in our trie
-print("Tokenizing...")
-vocab = tokenize()
-print("Tokenization done.")
+with open("tokens.pkl", "rb") as file:
+    tokens = pickle.load(file)
 
-def vocab2dict(vocab):
-    vocab_sans_doublon = list(set(vocab))
-    dict = {w: vocab.count(w) for w in vocab_sans_doublon}
+def tokens2dict(tokens):
+    # Aplatir la liste de listes en une seule liste
+    flat_tokens = [word for sublist in tokens for word in sublist]
+
+    tokens_sans_doublon = list(set(flat_tokens))
+    dict = {w: flat_tokens.count(w) for w in tokens_sans_doublon}
     return dict
 
-words = vocab2dict(vocab)
+
+words = tokens2dict(tokens)
 
 for word in words.keys():
     prediction.insert(word, words[word])
