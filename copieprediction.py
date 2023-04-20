@@ -16,7 +16,7 @@ def addWordsPred (dictio):
         dictio[key]["wordsPred"] = top_keys[:3]
 
 def prediction ():
-    listTokens = #acompleter
+    #listTokens #acompleter
     d ={}
     init_dictio(listTokens, d)
     return d
@@ -24,8 +24,8 @@ def prediction ():
 dictio={}
 listTokens = ["<debut>", "le", "chat", "court", "dans", "le", "jardin", "et", "le", "chien", "dans", "le", "salon", "le", "chien", "mange", "le", "gateau"]
 init_dictio(listTokens, dictio)
-ajout_listTokens=["<debut>", "la", "chanteuse", "est", "dans", "le", "jardin"]
+ajout_listTokens=["<debut>", "la", "chanteuse", "est", "dans", "la", "jardine"]
 init_dictio(ajout_listTokens, dictio)
 
-print(dictio["la"]["wordsPred"])
-# PB : met à jour les mots que j'ai jamais utilisé : est ce que c'est important ? 
+print(dictio["le"]["wordsPred"])
+# PB : met à jour les mots que j'ai jamais utilisé : est ce que c'est important ? OUI
