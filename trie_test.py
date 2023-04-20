@@ -14,7 +14,7 @@ class Trie:
     def __init__(self) -> None:
         self.root = TrieNode("")
 
-    def insert(self, word: str, count) -> None:
+    def insert(self, word: str) -> None:
         cur = self.root
 
         for c in word:
@@ -24,7 +24,9 @@ class Trie:
         cur.endOfWord = True
 
         if cur.endOfWord:
-            cur.count = count
+            cur.count +=1
+
+        
 
 
     def dfs(self, node, pre):
