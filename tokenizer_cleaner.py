@@ -12,7 +12,7 @@ def clean_and_tokenize(text):
     tokens = word_tokenize(text)  # Tokeniser le texte
     return tokens
 
-def tokenize():
+def tokenize_corpus():
     # Charger le fichier Excel en DataFrame
     sms_df = pd.read_excel('train_sms.xlsx')
 
@@ -28,6 +28,6 @@ def tokenize():
     return list_tokens
 
 # Appeler la fonction tokenize et enregistrer les tokens dans un fichier pickle
-list_tokens = tokenize()
+list_tokens = tokenize_corpus()
 with open("tokens.pkl", "wb") as file:
     pickle.dump(list_tokens, file)
