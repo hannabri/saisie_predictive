@@ -28,6 +28,6 @@ def tokenize_corpus():
     return list_tokens
 
 # Appeler la fonction tokenize et enregistrer les tokens dans un fichier pickle
-list_tokens = tokenize_corpus()
-with open("tokens.pkl", "wb") as file:
-    pickle.dump(list_tokens, file)
+#list_tokens = tokenize_corpus()
+#with open("tokens.pkl", "wb") as file:
+#    pickle.dump(list_tokens, file)
