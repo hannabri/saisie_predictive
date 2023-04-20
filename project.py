@@ -1,7 +1,6 @@
 #%%
 # The best project !!!
 #cjeuiwfnie
-
 print("Le meileur trio :)")
 
 #test de clara : est-ce que les modifications se font en temps r´éel ?
@@ -52,25 +51,33 @@ def completion():
         pre = pre + input()
 
 completion()
-
 #%%
 # Part 2 : Prédiction
-from trie_test import *
 from tokenizer_cleaner import *
 from contexte import *
-#nltk.download('punkt')
+import nltk
+nltk.download('punkt')
 
-def initDict (d, listTokens):
-    for i in range(1,len(listTokens),1):
-            if (listTokens[i-1]) not in d:
-                d[listTokens[i-1]]=Contexte(listTokens[i-1])
-            d[listTokens[i-1]].add_word(listTokens[i])
+def initDict (d, listTokens): #listTokens = liste de liste
+    for i in range(len(listTokens)): # pour tous les sms
+        for j in range(1,len(listTokens[i]),1): # du 2eme au dernier token
+                if (listTokens[i][j-1]) not in d:
+                    d[listTokens[i][j-1]]=Contexte(listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
+                d[listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
 
-def updateWordsPreds (d):
+def updateWordsPred (d):
     for v in d.values() :
         v.update_wordsPred()
 
-listTokens = tokenize_corpus()
-dictio={}
-initDict(dictio, listTokens)
-print(dictio["le"].wordsPred)
+def prediction ():
+    with open("tokens.pkl", "rb") as file:
+        listTokens = pickle.load(file)
+    dictio={}
+    initDict(dictio, listTokens)
+    updateWordsPred(dictio)
+    saisie = " "
+    while saisie!="":
+        saisie = input("mot du contexte : ")
+        print(dictio[saisie].wordsPred if saisie in dictio else [])
+
+prediction()
