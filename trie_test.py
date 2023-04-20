@@ -9,8 +9,7 @@ class TrieNode:
         self.char = char
         self.count = 0
 
-    def increment_count(self):
-        self.count += 1
+
 
 class Trie:
     # cette classe initialise la structure du trie avec les noeuds du TrieNode
@@ -34,10 +33,12 @@ class Trie:
 
 
     def dfs(self, node, pre):
- 
+        # la fonction cherche tous les mots commencants avec ce préfixe
+
        if node.endOfWord:
-           self.output[(pre + node.char)] = node.count
+           self.output[(pre + node.char)] = node.count # si le préfixe est un mot, il sera ajouté au dictionnaire avec le nombre d'occurences
         
+        # si le préfixe n'est pas un mot, on descends dans l'arbre pour chercher la fin du mot
        for child in node.children.values():
            self.dfs(child, pre + node.char)
 
@@ -45,14 +46,16 @@ class Trie:
     def search(self, prefix: str):
         cur = self.root
         
+        # vérifie sie le préfixe existe
         for c in prefix:
             if c in cur.children:
-                cur = cur.children[c] # si la lettre du préfixe existe dans le trie, le noeud courant change pour l'enfant avec le caractère
+                cur = cur.children[c] 
             else:
                 return {}
             
         self.output = {}
 
+        # cette fonction cherche tous les mots qui commencent avec ce préfixe et les ajoute à self.output
         self.dfs(cur, prefix[:-1])
 
         return self.output
