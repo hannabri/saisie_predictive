@@ -5,6 +5,7 @@
 print("Le meileur trio :)")
 
 #test de clara : est-ce que les modifications se font en temps r´éel ?
+#%%
 # Part 1 : Complétion 
 
 from trie_test import *
@@ -16,19 +17,20 @@ prediction = Trie()
 
 # add words in our trie
 
-vocab = tokenize()
+with open("tokens.pkl", "rb") as file:
+    tokens = pickle.load(file)
 
 
-def vocab2dict (vocab):
-    vocab_sans_doublon = list(set(vocab))
-    dict = {w : vocab.count(w) for w in vocab_sans_doublon}
-    return dict
+# def vocab2dict (vocab):
+#     vocab_sans_doublon = list(set(vocab))
+#     dict = {w : vocab.count(w) for w in vocab_sans_doublon}
+#     return dict
 
-words = vocab2dict(vocab)
+# words = vocab2dict(vocab)
 
-
-for word in words.keys():
-    prediction.insert(word, words[word])
+for list_tokens in tokens:
+    for word in list_tokens:
+        prediction.insert(word)
 
 # complétion du mot: 
 
@@ -51,8 +53,10 @@ def completion():
 
 completion()
 
-
+#%%
 # Part 2 : Prédiction
+from trie_test import *
+from tokenizer_cleaner import *
 
 def completer_dictio (corpus, dictio): # corpus = liste de string
     for i in range(1,len(corpus),1):
@@ -77,7 +81,7 @@ def prediction_mot (mot, dictio_3_mots):
 
 
 dictio={}
-corpus = ["<debut>", "le", "chat", "court", "dans", "le", "jardin", "et", "le", "chien", "dans", "le", "salon", "le", "chien", "mange", "le", "gateau"]
+corpus = tokenize_corpus()
 completer_dictio(corpus, dictio)
 ajout_corpus=["<debut>", "la", "chanteuse", "est", "dans", "le", "jardin"]
 completer_dictio(ajout_corpus, dictio)
