@@ -22,15 +22,12 @@ def tokenize():
     # Nettoyer et tokeniser le texte
     sms_df['tokens'] = sms_df['SMS_ANON'].apply(clean_and_tokenize)
 
-    list_tokens = []
-    for l in sms_df["tokens"].tolist(): 
-        list_tokens.extend(l)
-
-    # sms_df.to_excel('train_sms_transformed.xlsx', index=False)
+    # Convertir la colonne 'tokens' en une liste de listes de tokens
+    list_tokens = sms_df["tokens"].tolist()
     
     return list_tokens
 
-
-    # Créer un fichier pickle
+# Appeler la fonction tokenize et enregistrer les tokens dans un fichier pickle
+list_tokens = tokenize()
 with open("tokens.pkl", "wb") as file:
-    pickle.dump(tokenize(), file)
+    pickle.dump(list_tokens, file)
