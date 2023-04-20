@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 from nltk.tokenize import word_tokenize
+import pickle
 
 def tokenize():
     # Charger le fichier Excel en DataFrame
@@ -12,13 +13,20 @@ def tokenize():
     emojis = [":-)", "<3", ":]", ";)", ";-)", ":D", ":-D", ";P", ";-P", ":P", ":-P", "8)", "8-)", ":|", ":-|", ":(", ":-(", "o_O", "o.O", ":/", ":-/", ":O", ":-O", "O_O", "O.O", "o_o"]
 
     # Nettoyer et tokeniser le texte
+
+    sms_df['tokens'] = sms_df['SMS_ANON'].apply(clean_and_tokenize)
+
     def clean_and_tokenize(text):
         for emoji in emojis:text = text.replace(emoji, "")
         text = re.sub(r'[^\w\s]', '', text.lower())  # Supprimer les caractères non alphanumériques et mettre en minuscules
         tokens = word_tokenize(text)  # Tokeniser le texte
         return tokens
 
-    sms_df['tokens'] = sms_df['SMS_ANON'].apply(clean_and_tokenize)
+#Créer un fichier pickel
+    tokens = clean_and_tokenize(sms_df['SMS_ANON'].astype(str))
+
+    with open("tokens.pkl", "wb") as file:
+        pickle.dump(tokens, file)
 
     vocab = []
     for l in sms_df["tokens"].tolist(): 
@@ -28,5 +36,5 @@ def tokenize():
 
     #Cŕeer un nouveau fichier excel
 
-    sms_df.to_excel('train_sms_transformed.xlsx', index=False)
+    #sms_df.to_excel('train_sms_transformed.xlsx', index=False)
 
