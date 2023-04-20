@@ -1,7 +1,7 @@
 #%%
 # The best project !!!
 #cjeuiwfnie
-'''
+
 print("Le meileur trio :)")
 
 #test de clara : est-ce que les modifications se font en temps r´éel ?
@@ -52,12 +52,13 @@ def completion():
         pre = pre + input()
 
 completion()
-'''
+
 #%%
 # Part 2 : Prédiction
 from trie_test import *
 from tokenizer_cleaner import *
 from contexte import *
+#nltk.download('punkt')
 
 def initDict (d, listTokens):
     for i in range(1,len(listTokens),1):
