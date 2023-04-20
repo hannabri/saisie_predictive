@@ -17,7 +17,8 @@ prediction = Trie()
 
 # add words in our trie
 
-list_tokens = tokenize()
+with open("tokens.pkl", "rb") as file:
+    tokens = pickle.load(file)
 
 
 # def vocab2dict (vocab):
@@ -27,9 +28,9 @@ list_tokens = tokenize()
 
 # words = vocab2dict(vocab)
 
-
-for word in list_tokens:
-    prediction.insert(word)
+for list_tokens in tokens:
+    for word in list_tokens:
+        prediction.insert(word)
 
 # complétion du mot: 
 
@@ -80,7 +81,7 @@ def prediction_mot (mot, dictio_3_mots):
 
 
 dictio={}
-corpus = tokenize()
+corpus = tokenize_corpus()
 completer_dictio(corpus, dictio)
 ajout_corpus=["<debut>", "la", "chanteuse", "est", "dans", "le", "jardin"]
 completer_dictio(ajout_corpus, dictio)
