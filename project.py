@@ -2,7 +2,7 @@
 # The best project !!!
 #cjeuiwfnie
 print("Le meileur trio :)")
-
+'''
 #test de clara : est-ce que les modifications se font en temps r´éel ?
 #%%
 # Part 1 : Complétion 
@@ -51,6 +51,7 @@ def completion():
         pre = pre + input()
 
 completion()
+'''
 #%%
 # Part 2 : Prédiction
 from tokenizer_cleaner import *
@@ -58,7 +59,7 @@ from contexte import *
 import nltk
 nltk.download('punkt')
 
-def initDict (d, listTokens): #listTokens = liste de liste
+def fullDict (d, listTokens): #listTokens = liste de liste
     for i in range(len(listTokens)): # pour tous les sms
         for j in range(1,len(listTokens[i]),1): # du 2eme au dernier token
                 if (listTokens[i][j-1]) not in d:
@@ -69,15 +70,36 @@ def updateWordsPred (d):
     for v in d.values() :
         v.update_wordsPred()
 
-def prediction ():
+def initDictio ():
     with open("tokens.pkl", "rb") as file:
-        listTokens = pickle.load(file)
+            listTokens = pickle.load(file)
     dictio={}
-    initDict(dictio, listTokens)
+    fullDict(dictio, listTokens)
     updateWordsPred(dictio)
+    return dictio
+
+def prediction ():
+    dictio = initDictio()
     saisie = " "
     while saisie!="":
         saisie = input("mot du contexte : ")
         print(dictio[saisie].wordsPred if saisie in dictio else [])
 
-prediction()
+
+#partie test prediction
+def predictionWord(dictio, wordContexte, marge): # marge = nb de mots prédits (entre 0 et 3)
+    return dictio[wordContexte].wordsPred[:marge] if wordContexte in dictio else[]
+
+def testprediction (corpusTest,dictio,marge):
+    correct=0
+    total=0
+    for j in range(len(corpusTest)):
+        for i in range(len(corpusTest[j])-1):
+            if corpusTest[j][i+1] in predictionWord(dictio, corpusTest[j][i], marge):
+                correct +=1
+            total+=1
+    return (correct/total)
+
+dictio = initDictio()
+test = tokenize_test()
+print(testprediction (test,dictio,3))

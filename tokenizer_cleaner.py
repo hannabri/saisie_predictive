@@ -12,9 +12,8 @@ def clean_and_tokenize(text):
     tokens = word_tokenize(text)  # Tokeniser le texte
     return tokens
 
-def tokenize_corpus():
-    # Charger le fichier Excel en DataFrame
-    sms_df = pd.read_excel('train_sms.xlsx')
+def tokenize (nameFile):
+    sms_df = pd.read_excel(nameFile)
 
     # Convertir la colonne qui contient les sms en chaîne de caractères
     sms_df['SMS_ANON'] = sms_df['SMS_ANON'].astype(str)
@@ -26,6 +25,12 @@ def tokenize_corpus():
     list_tokens = sms_df["tokens"].tolist()
     
     return list_tokens
+
+def tokenize_corpus():
+    return tokenize('train_sms.xlsx')
+
+def tokenize_test():
+    return tokenize('test_sms.xlsx')
 
 # Appeler la fonction tokenize et enregistrer les tokens dans un fichier pickle
 #list_tokens = tokenize_corpus()
