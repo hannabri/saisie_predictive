@@ -14,6 +14,7 @@ class Contexte:
         top_values = sorted(self.allWords.values(), reverse=True)[:min(3, len(self.allWords))]
         top_keys = [k for k, v in self.allWords.items() if v in top_values]
         self.wordsPred = top_keys[:3]
+        #self.wordsPred = top_keys
     
     def __str__(self):
         return self.name

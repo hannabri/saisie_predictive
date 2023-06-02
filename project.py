@@ -66,6 +66,13 @@ def fullDict (d, listTokens): #listTokens = liste de liste
                     d[listTokens[i][j-1]]=Contexte(listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
                 d[listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
 
+def fullDictTriGrammes (d, listTokens): #listTokens = liste de liste
+    for i in range(len(listTokens)): # pour tous les sms
+        for j in range(2,len(listTokens[i]),1): # du 2eme au dernier token
+                if (listTokens[i][j-2]+" "+listTokens[i][j-1]) not in d:
+                    d[listTokens[i][j-2]+" "+listTokens[i][j-1]]=Contexte(listTokens[i][j-2]+" "+listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
+                d[listTokens[i][j-2]+" "+listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
+
 def updateWordsPred (d):
     for v in d.values() :
         v.update_wordsPred()
@@ -80,6 +87,21 @@ def initDictio ():
 
 def prediction ():
     dictio = initDictio()
+    saisie = " "
+    while saisie!="":
+        saisie = input("mot du contexte : ")
+        print(dictio[saisie].wordsPred if saisie in dictio else [])
+
+def initDictio2 ():
+    with open("tokens.pkl", "rb") as file:
+            listTokens = pickle.load(file)
+    dictio={}
+    fullDictTriGrammes(dictio, listTokens)
+    updateWordsPred(dictio)
+    return dictio
+
+def prediction2 ():
+    dictio = initDictio2()
     saisie = " "
     while saisie!="":
         saisie = input("mot du contexte : ")
@@ -100,6 +122,10 @@ def testprediction (corpusTest,dictio,marge):
             total+=1
     return (correct/total)
 
+
 dictio = initDictio()
 test = tokenize_test()
-print(testprediction (test,dictio,3))
+for i in range(1,11,1):
+     print(str(i)+ " mots prédits : "+str(testprediction(test, dictio, i)))
+prediction()
+prediction2()
