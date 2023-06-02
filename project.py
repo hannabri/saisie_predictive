@@ -69,6 +69,9 @@ def fullDict (d, listTokens): #listTokens = liste de liste
 def fullDictTriGrammes (d, listTokens): #listTokens = liste de liste
     for i in range(len(listTokens)): # pour tous les sms
         for j in range(2,len(listTokens[i]),1): # du 2eme au dernier token
+                if (listTokens[i][j-1]) not in d:
+                    d[listTokens[i][j-1]]=Contexte(listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
+                d[listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
                 if (listTokens[i][j-2]+" "+listTokens[i][j-1]) not in d:
                     d[listTokens[i][j-2]+" "+listTokens[i][j-1]]=Contexte(listTokens[i][j-2]+" "+listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
                 d[listTokens[i][j-2]+" "+listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
@@ -110,7 +113,7 @@ def prediction2 ():
 
 #partie test prediction
 def predictionWord(dictio, wordContexte, marge): # marge = nb de mots prédits (entre 0 et 3)
-    return dictio[wordContexte].wordsPred[:marge] if wordContexte in dictio else[]
+    return dictio[wordContexte].wordsPred[:marge] if wordContexte in dictio else []
 
 def testprediction (corpusTest,dictio,marge):
     correct=0
@@ -122,10 +125,45 @@ def testprediction (corpusTest,dictio,marge):
             total+=1
     return (correct/total)
 
+def testprediction2 (corpusTest,dictio,marge):
+    correct=0
+    total=0
+    for j in range(len(corpusTest)):
+        for i in range(1,len(corpusTest[j])-1):
+            motsPredTri = predictionWord(dictio, corpusTest[j][i-1]+" "+corpusTest[j][i], marge)
+            trouve=False
+            if ( len(motsPredTri) > 0 ) :
+                if (corpusTest[j][i+1] in motsPredTri):
+                    correct +=1
+                    trouve=True
+            
+            if (trouve==False) and (corpusTest[j][i+1] in predictionWord(dictio, corpusTest[j][i], marge)):
+                correct+=1
+            total+=1
+    return (correct/total)
 
-dictio = initDictio()
+#meilleure option trouvée
+def testprediction3 (corpusTest,dictio):
+    correct=0
+    total=0
+    for j in range(len(corpusTest)):
+        for i in range(1,len(corpusTest[j])-1):
+            motsPred = predictionWord(dictio, corpusTest[j][i-1]+" "+corpusTest[j][i],3)
+            z=0
+            motsPredBi = predictionWord(dictio, corpusTest[j][i],3)
+            while len(motsPred)<3 and (z<len(motsPredBi)):
+                if motsPredBi[z] not in motsPred :
+                    motsPred.append(motsPredBi[z])
+                z+=1
+            if (corpusTest[j][i+1] in motsPred):
+                correct+=1
+            total+=1
+    return (correct/total)
+
+dictio2 = initDictio2()
 test = tokenize_test()
-for i in range(1,11,1):
-     print(str(i)+ " mots prédits : "+str(testprediction(test, dictio, i)))
-prediction()
-prediction2()
+#for i in range(1,11,1):
+#     print(str(i)+ " mots prédits : "+str(testprediction2(test, dictio, i)))
+#prediction()
+#prediction2()
+print(testprediction3(test, dictio2))
