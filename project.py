@@ -76,6 +76,16 @@ def fullDictTriGrammes (d, listTokens): #listTokens = liste de liste
                     d[listTokens[i][j-2]+" "+listTokens[i][j-1]]=Contexte(listTokens[i][j-2]+" "+listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
                 d[listTokens[i][j-2]+" "+listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
 
+def fullDictTest (d, listTokens, taille): #listTokens = liste de liste
+    for i in range(len(listTokens)): # pour tous les sms
+        for j in range(1,len(listTokens[i]),1): # du 2eme au dernier token
+                contexte=[]
+                for z in range (1, min(taille,j),1):
+                    contexte.insert(0,listTokens[i][j-z])
+                if (contexte) not in d:
+                    d[contexte]=Contexte(contexte) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
+                d[contexte].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
+
 def updateWordsPred (d):
     for v in d.values() :
         v.update_wordsPred()
