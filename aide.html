@@ -10,14 +10,19 @@
     body {background-color: #fff2fb; font-family: Arial, Helvetica, sans-serif;}
     h1 {text-align: center; text-decoration-line: overline underline; font-size: 50px;}
     div {padding: 15px;}
-    p {font-size: 25px;}
+    p, td {font-size: 25px;}
     a {text-decoration: none; color:black;}
+    dt {padding : 10px; font-weight: bold;}
+    td {padding : 10px;}
+    td :hover {color : blue;}
+    dd {margin-bottom: 1em;}
     * {box-sizing: border-box;}
     .header, .footer {background-color: gray;}
     .menu {background-color: aqua; width: 20%; height: 100%; font-size: 25px; float: left; padding: 10px;}
     .menu dt:hover {background-color: #3498db;}
     .content {font-size: 25px; width: 80%; float: left; padding: 10px;}
     .layout {display: table; width: 100%;}
+    .footer {text-align: center;}
 </style>
 
 </head>
@@ -36,16 +41,35 @@
         </div>
         <div class = "content">
             <h3 id="general">Général</h3>
-            <p>Est-ce que c'est vraiment important?</p>
+            <p>Ce programme concerne la saisie prédictive des mots. Il comporte deux parties : Une partie prédiction et une partie complétion.
+                La prédiction propose des mots avant la saisie de la première lettre du mot. La complétion propose des mots en prenant en compte chaque lettre saisie. 
+                Par la suite vous trouverez les erreurs les plus fréquents et des idées pour les resoudre. 
+            </p>
             <h3 id="erreur">Erreur</h3>
-            <p>Description de l'erreur</p>
+            <dl>
+                <dt>Le programme ne propose plus de mots</dt>
+                <dd>Cela est dû au fait que le programme ne connait aucun mot qui commence par la suite de lettres que vous êtes en train de tapper. Pour cette raison, il ne peut pas vous proposer le mot que vous voulez écrire.</dd>
+                <dt>Le programme ne propose pas le mot voulu</dt>
+                <dd>Notre programme ne peut pas lire dans vos pensez. Il fait de son mieux pour vous proposer des mots basé sur la fréquence d'utilisation. Mais parfois il est possible que votre mot cherché ne figure pas parmi les propositions.</dd>
+            </dl>
             <h3 id="solution">Solution</h3>
             <p>Ici c'est l'aide dans l'idéal !</p>
             <h3 id="presentation">Présentation</h3>
             <p>
                 Nous sommes trois étudiantes en licence 3 de Linguistique Informatique à l'Université Paris Cité. Ce projet était notre projet de fin d'année. 
-
-            </p>
+                Vous pouvez nous contacter par mail : </p>
+                <table>
+                    <tr>
+                        <td>Anna Barnay</td> <td><a href="mailto: anna.barnay@etu.u-paris.fr">anna.barnay@etu.u-paris.fr</a></td>
+                    </tr>
+                    <tr>
+                        <td>Hanna Brinkmann</td> <td><a href="mailto: hanna.brinkmann@etu.u-paris.fr">hanna.brinkmann@etu.u-paris.fr</a></td>
+                    </tr>
+                    <tr>
+                        <td>Clara Rosina Fernandez</td> <td><a href="mailto: clara.rosina-fernandez@etu.u-paris.fr">clara.rosina-fernandez@etu.u-paris.fr</a></td>
+                    </tr>
+                </table>
+            
         </div>
     </div>
     
