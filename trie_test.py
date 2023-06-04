@@ -5,6 +5,7 @@ class TrieNode:
 
     def __init__(self, char) -> None:
         self.children = {}
+        self.frequentChildren = []
         self.endOfWord = False
         self.char = char
         self.count = 0
@@ -23,13 +24,56 @@ class Trie:
         for c in word:
             if c not in cur.children:
                 cur.children[c] = TrieNode(c) # si notre noeud courant n'a pas d'enfant avec le caractère, on crée le noeud
-            cur = cur.children[c] # s'il y a un enfant avec ce caractère, le noeud courant va être l'enfant avec ce caractère
+            cur = cur.children[c]    
         cur.endOfWord = True
 
         if cur.endOfWord:
             cur.count +=1
 
+    def dfs_search(self, node, pre):
+        if node.endOfWord:
+            self.output[pre + node.char] = node.count
+
+        for child in node.children.values():
+            self.dfs_search(child, pre + node.char)
+
         
+    def stock(self, prefix):
+        cur = self.root
+
+        # vérifier si le préfixe existe
+        for c in prefix: 
+            if c in cur.children:
+                cur = cur.children[c]
+
+        self.output = {}
+
+        self.dfs_search(cur, prefix[:-1])
+
+        # trier le dictionnaire obtenu pour avoir les trois mots avec le plus d'occurences
+
+        sort = dict(sorted(self.output.items(), key = lambda x: x[1], reverse = True) [:3])
+        
+        # ajouter l'information dans le noeud : 
+        
+        cur.frequentChildren.extend(list(sort.keys()))
+
+    def show_most_frequent_children(self, pre):
+        
+        cur = self.root
+
+        for c in pre: 
+            if c in cur.children:
+                cur = cur.children[c]
+            else:
+                return []
+
+        if cur.frequentChildren == []:
+            print("pas présent")
+            self.stock(pre)
+
+        return cur.frequentChildren
+
 
 
     def dfs(self, node, pre):
@@ -46,7 +90,7 @@ class Trie:
     def search(self, prefix: str):
         cur = self.root
         
-        # vérifie sie le préfixe existe
+        # vérifie si le préfixe existe
         for c in prefix:
             if c in cur.children:
                 cur = cur.children[c] 
@@ -70,4 +114,3 @@ class Trie:
             cur = cur.children[c]
 
         return True
-    

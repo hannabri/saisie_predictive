@@ -2,7 +2,7 @@
 # The best project !!!
 #cjeuiwfnie
 print("Le meileur trio :)")
-'''
+
 #test de clara : est-ce que les modifications se font en temps r´éel ?
 #%%
 # Part 1 : Complétion 
@@ -33,25 +33,31 @@ for list_tokens in tokens:
 
 # complétion du mot: 
 
+
+
 def completion():
     
     pre = input()
-    while pre != " ":
+    while pre[-1] != " ":
 
         # trier le dicitonnaire et l'afficher s'il n'est pas vide 
 
-        sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
+        # sort = dict(sorted(prediction.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
 
-        if sort == {}:
-            return None
-        else:
-            print(sort)
+        # if sort == {}:
+        #     return None
+        # else:
+        #     print(sort)
+
+        print(prediction.show_most_frequent_children(pre))
+
+        print()
         
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
 completion()
-'''
+
 #%%
 # Part 2 : Prédiction
 from tokenizer_cleaner import *
