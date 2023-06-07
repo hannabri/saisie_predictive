@@ -14,14 +14,7 @@ from contexte import *
 import nltk
 nltk.download('punkt')
 
-def fullDict (d, listTokens): #listTokens = liste de liste
-    for i in range(len(listTokens)): # pour tous les sms
-        for j in range(1,len(listTokens[i]),1): # du 2eme au dernier token
-                if (listTokens[i][j-1]) not in d:
-                    d[listTokens[i][j-1]]=Contexte(listTokens[i][j-1]) # créer le contexte si il existe pas (contexte = listTokens[i][j-1])
-                d[listTokens[i][j-1]].add_word(listTokens[i][j]) #ajouter une occurence au mot qui suit le contexte
-
-def fullDictTest (d, listTokens, nbGramme):
+def fullDict (d, listTokens, nbGramme):
     for i in range(len(listTokens)):
         for j in range(1,len(listTokens[i]),1):
                 contexte=[]
@@ -39,7 +32,7 @@ def initDictio (nbGramme):
     with open("tokens.pkl", "rb") as file:
             listTokens = pickle.load(file)
     dictio={}
-    fullDictTest(dictio, listTokens,nbGramme)
+    fullDict(dictio, listTokens,nbGramme)
     updateWordsPred(dictio)
     return dictio
 
