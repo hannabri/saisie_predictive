@@ -88,7 +88,7 @@ from data_preparation import *
 
 # initiate new Trie
 
-#trie = Trie()
+trie = Trie()
 
 # add words in our trie
 
@@ -105,14 +105,6 @@ with open("trie.pkl","rb") as file :
 #     return dict
 
 # words = vocab2dict(vocab)
-
-for list_tokens in tokens:
-    for word in list_tokens:
-        trie.insert(word)
-
-# complétion du mot: 
-
-
 
 def completion():
     
