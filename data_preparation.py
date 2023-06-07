@@ -30,8 +30,3 @@ def tokenize_corpus():
 
 def tokenize_test():
     return tokenize('test_sms.xlsx')
-
-# Appeler la fonction tokenize et enregistrer les tokens dans un fichier pickle
-#list_tokens = tokenize_corpus()
-#with open("tokens.pkl", "wb") as file:
-#    pickle.dump(list_tokens, file)
