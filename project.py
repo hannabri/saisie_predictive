@@ -123,12 +123,12 @@ def completion():
 
         sort = dict(sorted(trie.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
 
-        if sort == {}:
-            return None
-        else:
-            print(sort)
+        #if sort == {}:
+        #    return None
+        #else:
+        #    print(sort)
 
-        #print(trie.show_most_frequent_children(pre))
+        print(trie.show_most_frequent_children(pre))
 
         print()
         
