@@ -74,7 +74,14 @@ class Trie:
 
         return cur.frequentChildren
 
+    def update_word_count(self, word):
+        
+        cur = self.root
 
+        for c in word: 
+            cur = cur.children[c]
+
+        cur.count +=1
 
     def dfs(self, node, pre):
         # la fonction cherche tous les mots commencants avec ce préfixe
