@@ -151,9 +151,10 @@ def testprediction3 (corpusTest,dictio):
             total+=1
     return (correct/total)
 
-dictio = initDictio(3)
+dictio = initDictio(4)
+print(dictio)
 test = tokenize_test()
 #for i in range(1,11,1):
 #     print(str(i)+ " mots prédits : "+str(testprediction2(test, dictio, i)))
 #prediction()
-print(testprediction3(test, dictio))
+#print(testprediction3(test, dictio))

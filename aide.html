@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Saisie prédictive - aide en ligne</title>
@@ -10,11 +11,11 @@
     body {background-color: #fff2fb; font-family: Arial, Helvetica, sans-serif;}
     h1 {text-align: center; text-decoration-line: overline underline; font-size: 50px;}
     div {padding: 15px;}
-    p, td {font-size: 25px;}
+    p, td, dd {font-size: 20px;}
     a {text-decoration: none; color:black;}
     dt {padding : 10px; font-weight: bold;}
     td {padding : 10px;}
-    td :hover {color : blue;}
+    td>a:hover {color : blue;}
     dd {margin-bottom: 1em;}
     * {box-sizing: border-box;}
     .header, .footer {background-color: gray;}
@@ -51,6 +52,8 @@
                 <dd>Cela est dû au fait que le programme ne connait aucun mot qui commence par la suite de lettres que vous êtes en train de tapper. Pour cette raison, il ne peut pas vous proposer le mot que vous voulez écrire.</dd>
                 <dt>Le programme ne propose pas le mot voulu</dt>
                 <dd>Notre programme ne peut pas lire dans vos pensez. Il fait de son mieux pour vous proposer des mots basé sur la fréquence d'utilisation. Mais parfois il est possible que votre mot cherché ne figure pas parmi les propositions.</dd>
+                <dt>Les mots proposés contiennent des fautes d'orthogrphe</dt>
+                <dd>Si vous voyez des mots avec des fautes d'orthogrphe c'est parce que le corpus d'entrainement de notre programme contenait des mots avec des fautes d'orthographe. Nous l'avons entrainé avec un corpus de SMS donc peut-être vous y trouverez également des abbréviations que vous utilisez&nbsp;?</dd>
             </dl>
             <h3 id="solution">Solution</h3>
             <p>Ici c'est l'aide dans l'idéal !</p>
