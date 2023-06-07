@@ -1,7 +1,6 @@
 import pandas as pd
 import re
 from nltk.tokenize import word_tokenize
-import pickle
 
 emojis = [":-)", "<3", ":]", ";)", ";-)", ":D", ":-D", ";P", ";-P", ":P", ":-P", "8)", "8-)", ":|", ":-|", ":(", ":-(", "o_O", "o.O", ":/", ":-/", ":O", ":-O", "O_O", "O.O", "o_o"]
 
@@ -12,7 +11,7 @@ def clean_and_tokenize(text):
     tokens = word_tokenize(text)  # Tokeniser le texte
     return tokens
 
-def tokenize (nameFile):
+def tokenize(nameFile):
     sms_df = pd.read_excel(nameFile)
 
     # Convertir la colonne qui contient les sms en chaîne de caractères

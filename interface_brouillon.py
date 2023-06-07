@@ -1,5 +1,5 @@
 from trie_test import *
-from tokenizer_cleaner import *
+from data_preparation import *
 import tkinter as tk
 import pickle
 
