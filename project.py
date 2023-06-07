@@ -3,15 +3,14 @@
 
 print("Le meileur trio :)")
 
-#test de clara : est-ce que les modifications se font en temps r´éel ?
-
 #%%
 
 # Part 1 : Prédiction
 
-from tokenizer_cleaner import *
+from data_preparation import *
 from contexte import *
 import nltk
+import pickle
 nltk.download('punkt')
 
 def fullDict (d, listTokens, nbGramme):
@@ -85,16 +84,19 @@ print(max)
 # Part 2 : Complétion 
 
 from trie_test import *
-from tokenizer_cleaner import *
+from data_preparation import *
 
 # initiate new Trie
 
-trie = Trie()
+#trie = Trie()
 
 # add words in our trie
 
 with open("tokens.pkl", "rb") as file:
     tokens = pickle.load(file)
+
+with open("trie.pkl","rb") as file :
+    trie = pickle.load(file)
 
 
 # def vocab2dict (vocab):
