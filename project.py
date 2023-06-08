@@ -115,19 +115,19 @@ def completion():
 
         sort = dict(sorted(trie.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
 
-        #if sort == {}:
-        #    return None
-        #else:
-        #    print(sort)
+        if sort == {}:
+            return None
+        else:
+            print(sort)
 
-        print(trie.show_most_frequent_children(pre))
+        #print(trie.show_most_frequent_children(pre))
 
         print()
         
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
-#completion()
+completion()
 
 def testcompletion (trie, corpusTest, sizePre, nbWords):
     correct=0
@@ -160,10 +160,10 @@ def testcompletionprediction (dictio, trie, corpusTest):
             total+=1
     return (correct/total)
 
-test = tokenize_test()
+#test = tokenize_test()
 #for i in range(1,11,1):
 #    for j in range(1,6,1):
 #        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletion(trie,test, j, i)}')
 
-dictio = initDictio(2)
-print(testcompletionprediction(dictio, trie, test))
+#dictio = initDictio(2)
+#print(testcompletionprediction(dictio, trie, test))
