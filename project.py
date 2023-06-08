@@ -35,12 +35,44 @@ def initDictio (nbGramme):
     updateWordsPred(dictio)
     return dictio
 
-def prediction ():
-    dictio = initDictio()
-    saisie = " "
-    while saisie!="":
-        saisie = input("mot du contexte : ")
-        print(dictio[tuple(saisie.split())].wordsPred if tuple(saisie.split()) in dictio else [])
+def structurePred (nbWords, dictio, pred):
+    msg = []
+    word=""
+    end = False
+    while end == False:
+        saisie=input()
+        if saisie=="":
+            end=True
+        if saisie==" ":
+            msg.append(word)
+            word=""
+            pred(nbWords, msg, dictio)
+        else:
+            word+=saisie
+
+def predBi (nbWords, msg, dictio):
+    if len(msg)>0 and (msg[-1],) in dictio :
+        print(dictio[(msg[-1]),].wordsPred[:nbWords] )
+    else:
+        print("[]")
+
+def predTri (nbWords, msg, dictio):
+    if len(msg)>1 and (msg[-2],msg[-1]) in dictio :
+        print(dictio[(msg[-2],msg[-1])].wordsPred[:nbWords] )
+    elif len(msg)>0 and (msg[-1],) in dictio :
+        print(dictio[(msg[-1]),].wordsPred[:nbWords] )
+    else:
+        print("[]")
+
+def prediction (nbWords):
+    dictio={}
+    if (nbWords==1) or (nbWords==2):
+        dictio = initDictio(3)
+        structurePred(nbWords, dictio,predTri)
+    else:
+        dictio = initDictio(2)
+        structurePred(nbWords, dictio,predBi)
+prediction(3)
 
 
 #partie test prediction
@@ -63,7 +95,22 @@ def testpred (corpusTest,dictio, nbB, nbT):
                 correct+=1
             total+=1
     return (correct/total)
+
+def txUnkWords (corpusTest, dictio):
+    nbWords = 0
+    nbUnkWords=0
+    for j in range(len(corpusTest)):
+        for i in range(len(corpusTest[j])):
+            if ((corpusTest[j][i],) not in dictio):
+                nbUnkWords+=1
+            nbWords+=1
+    return nbUnkWords/nbWords
 '''
+#dictio=initDictio(2)
+#test = tokenize_test()
+#print(txUnkWords(test, dictio))
+
+
 dictio = initDictio(3)
 test = tokenize_test()
 max =0
@@ -78,8 +125,8 @@ print(max)
 #     print(str(i)+ " mots prédits : "+str(testprediction2(test, dictio, i)))
 #prediction()
 #print(testprediction3(test, dictio))
-
 '''
+
 #%%
 # Part 2 : Complétion 
 
@@ -88,23 +135,17 @@ from data_preparation import *
 
 # initiate new Trie
 
-#trie = Trie()
+trie = Trie()
 
 # add words in our trie
 
 with open("tokens.pkl", "rb") as file:
     tokens = pickle.load(file)
 
-with open("trie.pkl","rb") as file :
-    trie = pickle.load(file)
+#with open("trie.pkl","rb") as file :
+#    trie = pickle.load(file)
 
 
-# def vocab2dict (vocab):
-#     vocab_sans_doublon = list(set(vocab))
-#     dict = {w : vocab.count(w) for w in vocab_sans_doublon}
-#     return dict
-
-# words = vocab2dict(vocab)
 
 def completion():
     
@@ -127,14 +168,15 @@ def completion():
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
-completion()
+#completion()
 
 def testcompletion (trie, corpusTest, sizePre, nbWords):
     correct=0
     total=0
     for j in range(len(corpusTest)):
-        for i in range(0,len(corpusTest[j])+1):
+        for i in range(len(corpusTest[j])+1):
             pre = corpusTest[j][i][:sizePre+1]
+            print(pre)
             sort = dict(sorted(trie.search(pre).items(), key = lambda x: x[1], reverse = True)[:nbWords])
             if (corpusTest[j][i] in sort.keys()):
                 correct+=1
@@ -167,3 +209,4 @@ def testcompletionprediction (dictio, trie, corpusTest):
 
 #dictio = initDictio(2)
 #print(testcompletionprediction(dictio, trie, test))
+
