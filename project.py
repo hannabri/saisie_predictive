@@ -88,7 +88,7 @@ from data_preparation import *
 
 # initiate new Trie
 
-trie = Trie()
+#trie = Trie()
 
 # add words in our trie
 

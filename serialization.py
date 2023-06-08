@@ -11,7 +11,7 @@ with open("tokens.pkl", "rb") as file:
     tokens = pickle.load(file)
 
 trie = Trie()
-
+print(tokens[:10])
 for list_tokens in tokens:
     for word in list_tokens:
         trie.insert(word)
