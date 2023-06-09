@@ -171,13 +171,9 @@ def completion():
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
-<<<<<<< HEAD
     trie.update_word_count(pre[:-1])
 
 completion()
-=======
-#completion()
->>>>>>> 8d382ee222e45b30c3d187b882bab11a04bd27f6
 
 def update_most_frequent_words(): 
     
