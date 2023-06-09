@@ -11,9 +11,11 @@ class Contexte:
             self.allWords[word] = 1
 
     def update_wordsPred (self):
-        top_values = sorted(self.allWords.values(), reverse=True)[:min(10, len(self.allWords))]
+        #top_values = sorted(self.allWords.values(), reverse=True)[:min(10, len(self.allWords))]
+        top_values = sorted(self.allWords.values(), reverse=True)
         top_keys = [k for k, v in self.allWords.items() if v in top_values]
-        self.wordsPred = top_keys[:10]
+        #self.wordsPred = top_keys[:10]
+        self.wordsPred = top_keys
     
     def __str__(self):
         return self.name

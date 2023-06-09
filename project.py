@@ -80,7 +80,7 @@ def prediction (nbWords):
     else:
         dictio = initDictio(2)
         structurePred(nbWords, dictio,predBi)
-prediction(3)
+#prediction(3)
 
 
 #partie test prediction
@@ -153,7 +153,9 @@ with open("tokens.pkl", "rb") as file:
 #with open("trie.pkl","rb") as file :
 #    trie = pickle.load(file)
 
-
+for list_tokens in tokens:
+    for word in list_tokens:
+        trie.insert(word)
 
 def completion():
     
@@ -182,11 +184,12 @@ def testcompletion (trie, corpusTest, sizePre, nbWords):
     correct=0
     total=0
     for j in range(len(corpusTest)):
-        for i in range(len(corpusTest[j])+1):
+        for i in range(0,len(corpusTest[j])):
             pre = corpusTest[j][i][:sizePre+1]
-            print(pre)
-            sort = dict(sorted(trie.search(pre).items(), key = lambda x: x[1], reverse = True)[:nbWords])
-            if (corpusTest[j][i] in sort.keys()):
+            sort =set(trie.show_most_frequent_children(pre)[:nbWords])
+            print(sort)
+            print(corpusTest[j][i])
+            if (corpusTest[j][i] in sort ):
                 correct+=1
             total+=1
     return (correct/total)
@@ -210,11 +213,36 @@ def testcompletionprediction (dictio, trie, corpusTest):
             total+=1
     return (correct/total)
 
-#test = tokenize_test()
+def testcompletionprediction2 (dictio, trie, corpusTest, nbWords, pdsPred, sizePre):
+    correct=0
+    total=0
+    for j in range(len(corpusTest)):
+        for i in range(1,len(corpusTest[j])):
+            finalSet=set()
+            wordsPred = dictio[(corpusTest[j][i-1],)].wordsPred[:pdsPred] if (corpusTest[j][i-1],) in dictio else []
+            pre = corpusTest[j][i][:sizePre]
+            for word in wordsPred:
+                if word.startswith(pre):
+                    finalSet.add(word)
+                    if len(finalSet)==nbWords:
+                        break
+
+            sort =trie.show_most_frequent_children(pre)[:nbWords]
+            finalSet.update(sort[:(nbWords-len(finalSet))])
+            if corpusTest[j][i] in finalSet :
+                correct+=1
+            total+=1
+    return (correct/total)
+
+test = tokenize_test()
 #for i in range(1,11,1):
 #    for j in range(1,6,1):
 #        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletion(trie,test, j, i)}')
 
-#dictio = initDictio(2)
-#print(testcompletionprediction(dictio, trie, test))
+
+dictio = initDictio(2)
+for i in range(1,11,1):
+    for j in range(1,6,1):
+        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletionprediction2(dictio, trie,test, i, 5, j)}')
+
 

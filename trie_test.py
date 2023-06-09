@@ -69,7 +69,6 @@ class Trie:
                 return []
 
         if cur.frequentChildren == []:
-            print("pas présent")
             self.stock(pre)
 
         return cur.frequentChildren
