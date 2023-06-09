@@ -113,6 +113,10 @@ def rtUnkWords (corpusTest, dictio):
                 nbUnkWords+=1
             nbWords+=1
     return nbUnkWords/nbWords
+
+
+dictio=initDictio(2)
+
 '''
 #dictio=initDictio(2)
 #test = tokenize_test()
@@ -194,26 +198,8 @@ def testcompletion (trie, corpusTest, sizePre, nbWords):
             total+=1
     return (correct/total)
 
-def testcompletionprediction (dictio, trie, corpusTest):
-    correct=0
-    total=0
-    for j in range(len(corpusTest)):
-        for i in range(1,len(corpusTest[j])):
-            wordsPred = dictio[(corpusTest[j][i-1],)].wordsPred if (corpusTest[j][i-1],) in dictio else []
-            pre = corpusTest[j][i][:2]
-            sort = dict(sorted(trie.search(pre).items(), key = lambda x: x[1], reverse = True))
-            dictComb = {cle: valeur for cle, valeur in sort.items() if cle in wordsPred}
-            wordProp=""
-            if len(dictComb) !=0:
-                wordProp = max(dictComb, key=dictComb.get)
-            elif len(sort)!=0 :
-                wordProp = max(sort, key=sort.get)
-            if corpusTest[j][i] == wordProp:
-                correct+=1
-            total+=1
-    return (correct/total)
 
-def testcompletionprediction2 (dictio, trie, corpusTest, nbWords, pdsPred, sizePre):
+def testcompletionprediction (dictio, trie, corpusTest, nbWords, pdsPred, sizePre):
     correct=0
     total=0
     for j in range(len(corpusTest)):
@@ -244,5 +230,5 @@ dictio = initDictio(2)
 for i in range(1,11,1):
     for j in range(1,6,1):
         print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletionprediction2(dictio, trie,test, i, 5, j)}')
-"""
+
 
