@@ -2,6 +2,7 @@ import pickle
 from data_preparation import *
 from trie_test import *
 from trie_test import *
+from joblib import dump 
 
 list_tokens = tokenize_corpus()
 with open("tokens.pkl", "wb") as file:
@@ -17,5 +18,7 @@ for list_tokens in tokens:
         trie.insert(word)
 
 with open("trie.pkl", "wb") as file:
-    pickle.dump(trie, file)
+    dump(trie, file)  # to serialize
+
+
 
