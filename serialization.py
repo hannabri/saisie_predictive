@@ -4,10 +4,10 @@ from trie_test import *
 from trie_test import *
 import json
 
-#RUN this file to serialize 'tokens.pkl' and 'trie.pkl'
+#RUN this file to serialize 'tokens.pkl', 'tokens_test.pkl' and 'trie.pkl'
 #pour utiliser le Trie dans project.py ou autre, faire : trie = serialization.deserialize_trie()
 
-#pour utiliser carger les tokens faire : tokens = serialization.deserialize_corpus()
+#pour charger les tokens faire : tokens = serialization.deserialize_corpus()
 
 def serialize_corpus():
     list_tokens = tokenize_corpus()
