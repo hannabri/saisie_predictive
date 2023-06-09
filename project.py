@@ -143,19 +143,17 @@ from data_preparation import *
 
 # initiate new Trie
 
-trie = Trie()
+import serialization
 
-# add words in our trie
+# Sérialiser le trie
+#serialization.serialize(trie, "trie.json")
 
-with open("tokens.pkl", "rb") as file:
-    tokens = pickle.load(file)
+# Désérialiser le trie
+trie = serialization.deserialize_trie()
 
-#with open("trie.pkl","rb") as file :
-#    trie = pickle.load(file)
-
-for list_tokens in tokens:
-    for word in list_tokens:
-        trie.insert(word)
+# Charger les tokens
+tokens = serialization.deserialize_corpus()
+#tokens = serialization.deserialize_test()
 
 def completion():
     
@@ -173,7 +171,7 @@ def completion():
 
     trie.update_word_count(pre[:-1])
 
-completion()
+#completion()
 
 def update_most_frequent_words(): 
     
@@ -237,14 +235,14 @@ def testcompletionprediction2 (dictio, trie, corpusTest, nbWords, pdsPred, sizeP
     return (correct/total)
 
 test = tokenize_test()
-#for i in range(1,11,1):
-#    for j in range(1,6,1):
-#        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletion(trie,test, j, i)}')
+"""for i in range(1,11,1):
+    for j in range(1,6,1):
+        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletion(trie,test, j, i)}')
 
 
 dictio = initDictio(2)
 for i in range(1,11,1):
     for j in range(1,6,1):
         print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletionprediction2(dictio, trie,test, i, 5, j)}')
-
+"""
 
