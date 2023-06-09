@@ -20,7 +20,7 @@ La saisie prédictive est surtout un outil qui facilite la rédaction des messag
 
 ## Et en cas de problème ?
 
-Si vous rencontrer des problémes avec notre programme, nous avons fait une aide en ligne que vous pouvez accéder avec <a href="aide.html" target="_blank">ce lien</a>.
+Si vous rencontrer des problémes avec notre programme, nous avons fait une aide en ligne que vous pouvez accéder avec <a href="https://external.ink/?to=/aide.html">ce lien</a>.
 
 ## Qui sommes-nous ?
 
