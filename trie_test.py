@@ -52,7 +52,7 @@ class Trie:
 
         # trier le dictionnaire obtenu pour avoir les trois mots avec le plus d'occurences
 
-        sort = dict(sorted(self.output.items(), key = lambda x: x[1], reverse = True) [:5])
+        sort = dict(sorted(self.output.items(), key = lambda x: x[1], reverse = True) [:10])
         
         # ajouter l'information dans le noeud : 
         
