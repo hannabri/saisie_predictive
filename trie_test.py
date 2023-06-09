@@ -71,7 +71,7 @@ class Trie:
         if cur.frequentChildren == []:
             self.stock(pre)
 
-        return cur.frequentChildren
+        return cur.frequentChildren[:5]
 
     def update_word_count(self, word):
         
