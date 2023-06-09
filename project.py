@@ -113,21 +113,23 @@ def completion():
 
          #trier le dicitonnaire et l'afficher s'il n'est pas vide 
 
-        sort = dict(sorted(trie.search(pre).items(), key = lambda x: x[1], reverse = True)[:3])
-
-        if sort == {}:
-            return None
-        else:
-            print(sort)
-
-        #print(trie.show_most_frequent_children(pre))
+        print(trie.show_most_frequent_children(pre))
 
         print()
         
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
+    trie.update_word_count(pre[:-1])
+
 completion()
+
+def update_most_frequent_words(): 
+    
+    for word in tokens : 
+        trie.update(word)
+
+
 
 def testcompletion (trie, corpusTest, sizePre, nbWords):
     correct=0

@@ -78,46 +78,52 @@ class Trie:
         
         cur = self.root
 
-        for c in word: 
+        for c in word:
+            if c not in cur.childre: 
+                cur.childre[c] = TrieNode()
             cur = cur.children[c]
 
         cur.count +=1
 
-    def dfs(self, node, pre):
-        # la fonction cherche tous les mots commencants avec ce préfixe
 
-       if node.endOfWord:
-           self.output[(pre + node.char)] = node.count # si le préfixe est un mot, il sera ajouté au dictionnaire avec le nombre d'occurences
-        
-        # si le préfixe n'est pas un mot, on descends dans l'arbre pour chercher la fin du mot
-       for child in node.children.values():
-           self.dfs(child, pre + node.char)
 
-    
-    def search(self, prefix: str):
-        cur = self.root
-        
-        # vérifie si le préfixe existe
-        for c in prefix:
-            if c in cur.children:
-                cur = cur.children[c] 
-            else:
-                return {}
-            
-        self.output = {}
+    def update(self, word):
 
-        # cette fonction cherche tous les mots qui commencent avec ce préfixe et les ajoute à self.output
-        self.dfs(cur, prefix[:-1])
-
-        return self.output
-    
-
-    def startsWith(self, prefix:str) -> bool:
         cur = self.root
 
-        for c in prefix:
-            if c not in cur.children:
-                return False
+        for c in word: 
             cur = cur.children[c]
 
-        return True
+        cur.frequentChildren = []
+
+
+
+    # def dfs(self, node, pre):
+    #     # la fonction cherche tous les mots commencants avec ce préfixe
+
+    #    if node.endOfWord:
+    #        self.output[(pre + node.char)] = node.count # si le préfixe est un mot, il sera ajouté au dictionnaire avec le nombre d'occurences
+        
+    #     # si le préfixe n'est pas un mot, on descends dans l'arbre pour chercher la fin du mot
+    #    for child in node.children.values():
+    #        self.dfs(child, pre + node.char)
+
+    
+    # def search(self, prefix: str):
+    #     cur = self.root
+        
+    #     # vérifie si le préfixe existe
+    #     for c in prefix:
+    #         if c in cur.children:
+    #             cur = cur.children[c] 
+    #         else:
+    #             return {}
+            
+    #     self.output = {}
+
+    #     # cette fonction cherche tous les mots qui commencent avec ce préfixe et les ajoute à self.output
+    #     self.dfs(cur, prefix[:-1])
+
+    #     return self.output
+    
+
