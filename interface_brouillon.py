@@ -31,7 +31,6 @@ class Application(tk.Frame):
             self.predicted_word.set(f"Predicted next word: {predicted}")
         else:
             suggested = completion(entered_text)
-            # Assuming 'completion' returns a list of suggestions
             self.combobox['values'] = suggested
 
     def on_combobox_selected(self, event):
