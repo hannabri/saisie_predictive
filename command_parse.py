@@ -14,7 +14,7 @@ help_description = ("Le but du programme est de vous propser une liste des mots 
 parser = argparse.ArgumentParser(description=help_description)
 
 parser.add_argument('-u','--update', metavar='update', help="Mettre à jour la liste des mots")
-parser.add_argument('-nbm','--nombre-de-mots', metavar='nombre-de-mots', type=int, help="Choisir la taille de la liste entre 1 et 5 mots")
+parser.add_argument('-nbm','--nombre-de-mots', type=int, choices=range(1, 6), metavar=[1-5], help="Choisir le nombre de mots proposés dans la liste")
 
 args = parser.parse_args()
 
