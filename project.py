@@ -115,7 +115,7 @@ def rtUnkWords (corpusTest, dictio):
     return nbUnkWords/nbWords
 
 
-dictio=initDictio(2)
+#dictio=initDictio(2)
 
 '''
 #dictio=initDictio(2)
@@ -157,7 +157,7 @@ trie = serialization.deserialize_trie()
 
 # Charger les tokens
 tokens = serialization.deserialize_corpus()
-#tokens = serialization.deserialize_test()
+tokens_test = serialization.deserialize_test()
 
 def completion():
     
@@ -220,15 +220,15 @@ def testcompletionprediction (dictio, trie, corpusTest, nbWords, pdsPred, sizePr
             total+=1
     return (correct/total)
 
-test = tokenize_test()
-"""for i in range(1,11,1):
+
+
+for i in range(1,11,1):
     for j in range(1,6,1):
-        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletion(trie,test, j, i)}')
+        print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletion(trie,tokens_test, j, i)}')
 
-
+'''
 dictio = initDictio(2)
 for i in range(1,11,1):
     for j in range(1,6,1):
         print(f'nb mots prédits : {i} , taille du prefixe : {j} , score = {testcompletionprediction2(dictio, trie,test, i, 5, j)}')
-
-
+'''
