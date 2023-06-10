@@ -78,8 +78,8 @@ class Trie:
         cur = self.root
 
         for c in word:
-            if c not in cur.childre: 
-                cur.childre[c] = TrieNode()
+            if c not in cur.children: 
+                cur.children[c] = TrieNode()
             cur = cur.children[c]
 
         cur.count +=1
