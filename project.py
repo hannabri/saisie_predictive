@@ -94,17 +94,16 @@ def prediction (nbWords):
 
 from trie import *
 from data_preparation import *
-import serialization
-
+from deserialization import load
 # Sérialiser le trie
 #serialization.serialize(trie, "trie.json")
 
 # Désérialiser le trie
-trie = serialization.deserialize_trie()
+trie = load("trie")
 
 # Charger les tokens
-tokens = serialization.deserialize_corpus()
-tokens_test = serialization.deserialize_test()
+tokens = load("corpus")
+tokens_test = load("test")
 
 def completion():
     
@@ -120,7 +119,7 @@ def completion():
 
     trie.update_word_count(pre[:-1])
 
-#completion()
+completion()
 
 def update_most_frequent_words(): 
     

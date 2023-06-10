@@ -2,7 +2,7 @@ import pickle
 from data_preparation import *
 import trie
 import sys
-from project import initDictio
+from deserialization import load
 
 sys.setrecursionlimit(10000)
 
@@ -16,13 +16,7 @@ def serialize_test():
     with open("test.pkl", "wb") as file:
         pickle.dump(test, file)
 
-def deserialize_corpus():
-    with open("corpus.pkl", "rb") as file:
-        return pickle.load(file)
-    
-def deserialize_test():
-    with open("test.pkl", "rb") as file:
-        return pickle.load(file)
+from project_copie import initDictio
 
 dictio3 = initDictio(3)
 
@@ -30,14 +24,10 @@ def serialize_dict3():
     with open("dictio_trigrammes.pkl", "wb") as file:
         pickle.dump(dictio3, file)
 
-def deserialize_dictio3():
-    with open("dictio_trigrammes.pkl", "rb") as file:
-        return pickle.load(file)
-
 trie = trie.Trie()
 def serialize_trie():
     # ajouter des mots dans le trie
-    corpus = deserialize_corpus()
+    corpus = load("corpus")
 
     for listTokens in corpus:
         for token in listTokens:
@@ -45,10 +35,6 @@ def serialize_trie():
 
     with open ("trie.pkl", "wb") as file: 
         pickle.dump(trie, file)
-
-def deserialize_trie():
-    with open ("trie.pkl", "rb") as file:
-        return pickle.load(file)
 
 serialize_corpus()
 serialize_test()

@@ -1,51 +1,42 @@
-from trie import *
-from data_preparation import *
 import tkinter as tk
-import pickle
+from tkinter import ttk
+from project_copie import prediction, completion
 
-# initiate new Trie
-prediction = Trie()
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
+        self.create_widgets()
 
-# add words in our trie
-with open("tokens.pkl", "rb") as file:
-    tokens = pickle.load(file)
+    def create_widgets(self):
+        self.combobox = ttk.Combobox(self)
+        self.combobox.pack(side="top")
+        
+        self.combobox.bind('<<ComboboxSelected>>', self.on_combobox_selected)
+        self.combobox.bind('<KeyRelease>', self.on_key_release)
+        
+        self.predicted_word = tk.StringVar(self, value="")
+        self.prediction_label = tk.Label(self, textvariable=self.predicted_word)
+        self.prediction_label.pack(side="top")
 
-def tokens2dict(tokens):
-    # Aplatir la liste de listes en une seule liste
-    flat_tokens = [word for sublist in tokens for word in sublist]
+        self.quit = tk.Button(self, text="QUIT", fg="red",
+                              command=self.master.destroy)
+        self.quit.pack(side="bottom")
 
-    tokens_sans_doublon = list(set(flat_tokens))
-    dict = {w: flat_tokens.count(w) for w in tokens_sans_doublon}
-    return dict
+    def on_key_release(self, event):
+        entered_text = self.combobox.get()
+        if entered_text[-1] == " ":
+            predicted = prediction(entered_text)
+            self.predicted_word.set(f"Predicted next word: {predicted}")
+        else:
+            suggested = completion(entered_text)
+            # Assuming 'completion' returns a list of suggestions
+            self.combobox['values'] = suggested
 
+    def on_combobox_selected(self, event):
+        self.combobox.set(self.combobox.get())
 
-words = tokens2dict(tokens)
-
-for word in words.keys():
-    prediction.insert(word, words[word])
-
-def generate_suggestions(input_text):
-    suggestions_dict = prediction.search(input_text)
-    sorted_suggestions = dict(sorted(suggestions_dict.items(), key=lambda x: x[1], reverse=True)[:3])
-    return sorted_suggestions
-
-def update_suggestions_on_gui(suggestions):
-    suggestions_label.config(text="\n".join(suggestions.keys()))
-
-def on_key_release(event):
-    input_text = text_input.get()
-    suggestions = generate_suggestions(input_text)
-    update_suggestions_on_gui(suggestions)
-
-main_window = tk.Tk()
-main_window.title("Complétion de texte")
-
-text_input = tk.Entry(main_window, width=40)
-text_input.bind('<KeyRelease>', on_key_release)
-text_input.pack(pady=10)
-
-suggestions_label = tk.Label(main_window, text="")
-suggestions_label.pack(pady=10)
-
-print("Starting mainloop...")  # Ajout du print ici
-main_window.mainloop()
+root = tk.Tk()
+app = Application(master=root)
+app.mainloop()
