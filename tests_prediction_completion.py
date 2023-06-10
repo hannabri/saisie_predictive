@@ -6,8 +6,8 @@ def predictionWord(dictio, wordContexte, marge): # marge = nb de mots prédits
 def testPred (corpusTest,dictio, nbB, nbT):
     correct=0
     total=0
-    for j in range(len(corpusTest)): # pour chaque message
-        for i in range(1,len(corpusTest[j])-1): # pour chaque mot du message, mis à part le premier et le dernier
+    for j in range(len(corpusTest)):
+        for i in range(1,len(corpusTest[j])-1):
             motsPred = predictionWord(dictio, (corpusTest[j][i-1],corpusTest[j][i]),nbT)
             z=0
             motsPredBi = predictionWord(dictio, (corpusTest[j][i],),10)
