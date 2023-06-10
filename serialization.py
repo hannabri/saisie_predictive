@@ -1,100 +1,56 @@
 import pickle
 from data_preparation import *
-from trie import *
-from trie import *
-import json
+import trie
+import sys
+from project import initDictio
 
-#RUN this file to serialize 'tokens.pkl', 'tokens_test.pkl' and 'trie.pkl'
-#pour utiliser le Trie dans project.py ou autre, faire : trie = serialization.deserialize_trie()
-
-#pour charger les tokens faire : tokens = serialization.deserialize_corpus()
+sys.setrecursionlimit(10000)
 
 def serialize_corpus():
-    list_tokens = tokenize_corpus()
-    with open("tokens.pkl", "wb") as file:
-        pickle.dump(list_tokens, file)
+    corpus = tokenize_corpus()
+    with open("corpus.pkl", "wb") as file:
+        pickle.dump(corpus, file)
 
 def serialize_test():
-    list_tokens = tokenize_test()
-    with open("tokens_test.pkl", "wb") as file:
-        pickle.dump(list_tokens, file)
-
+    test = tokenize_test()
+    with open("test.pkl", "wb") as file:
+        pickle.dump(test, file)
 
 def deserialize_corpus():
-    with open("tokens.pkl", "rb") as file:
+    with open("corpus.pkl", "rb") as file:
         return pickle.load(file)
     
 def deserialize_test():
-    with open("tokens_test.pkl", "rb") as file:
+    with open("test.pkl", "rb") as file:
         return pickle.load(file)
 
-trie = Trie()
+dictio3 = initDictio(3)
 
-# ajouter des mots dans le trie
-tokens = deserialize_corpus()
+def serialize_dict3():
+    with open("dictio_trigrammes.pkl", "wb") as file:
+        pickle.dump(dictio3, file)
 
-for list_tokens in tokens:
-    for word in list_tokens:
-        trie.insert(word)
+def deserialize_dictio3():
+    with open("dictio_trigrammes.pkl", "rb") as file:
+        return pickle.load(file)
 
-def serialize(trie):
-    # Initialiser une file d'attente avec le noeud racine
-    queue = [trie.root]
-    result = []
+trie = trie.Trie()
+def serialize_trie():
+    # ajouter des mots dans le trie
+    corpus = deserialize_corpus()
 
-    while queue:
-        node = queue.pop(0)
-        # Ajouter le noeud actuel au résultat
-        result.append({
-            'char': node.char,
-            'endOfWord': node.endOfWord,
-            'count': node.count,
-            'frequentChildren': node.frequentChildren,
-            'children': list(node.children.keys())
-        })
+    for listTokens in corpus:
+        for token in listTokens:
+            trie.insert(token)
 
-        # Ajouter les enfants à la file d'attente
-        for child in node.children.values():
-            queue.append(child)
-
-    serialized_trie = json.dumps(result)
-
-    # Écrire le Trie sérialisé dans un fichier
-    with open('trie.json', "w") as file:
-        file.write(serialized_trie)
-
+    with open ("trie.pkl", "wb") as file: 
+        pickle.dump(trie, file)
 
 def deserialize_trie():
-    with open("trie.json", "r") as file:
-        data = file.read()
+    with open ("trie.pkl", "rb") as file:
+        return pickle.load(file)
 
-    # Convertir la chaîne JSON en une liste
-    data = json.loads(data)
-
-    trie.root = TrieNode(data[0]['char'])
-    trie.root.endOfWord = data[0]['endOfWord']
-    trie.root.count = data[0]['count']
-    trie.root.frequentChildren = data[0]['frequentChildren']
-
-    queue = [(trie.root, data[0]['children'])]
-
-    # On garde un index de l'élément courant dans data
-    index = 1
-    while queue:
-        parent, children_names = queue.pop(0)
-
-        while index < len(data) and data[index]['char'] in children_names:
-            item = data[index]
-            node = TrieNode(item['char'])
-            node.endOfWord = item['endOfWord']
-            node.count = item['count']
-            node.frequentChildren = item['frequentChildren']
-            parent.children[node.char] = node
-            queue.append((node, item['children']))
-            index += 1
-
-    return trie.root
-
-serialize(trie)
 serialize_corpus()
 serialize_test()
+serialize_trie()
+serialize_dict3()

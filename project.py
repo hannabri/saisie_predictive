@@ -31,7 +31,7 @@ def updateWordsPred (d):
 
 # initialisation du dictionnaire
 def initDictio (nbGramme):
-    with open("tokens.pkl", "rb") as file:
+    with open("corpus.pkl", "rb") as file:
             listTokens = pickle.load(file)
     dictio={}
     fullDict(dictio, listTokens,nbGramme)
@@ -120,7 +120,7 @@ def completion():
 
     trie.update_word_count(pre[:-1])
 
-completion()
+#completion()
 
 def update_most_frequent_words(): 
     
