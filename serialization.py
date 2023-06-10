@@ -1,7 +1,7 @@
 import pickle
 from data_preparation import *
-from trie_test import *
-from trie_test import *
+from trie import *
+from trie import *
 import json
 
 #RUN this file to serialize 'tokens.pkl', 'tokens_test.pkl' and 'trie.pkl'

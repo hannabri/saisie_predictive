@@ -142,7 +142,7 @@ print(max)
 #%%
 # Part 2 : Complétion 
 
-from trie_test import *
+from trie import *
 from data_preparation import *
 
 # initiate new Trie

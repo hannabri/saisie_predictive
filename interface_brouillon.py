@@ -1,4 +1,4 @@
-from trie_test import *
+from trie import *
 from data_preparation import *
 import tkinter as tk
 import pickle
