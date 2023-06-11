@@ -2,12 +2,14 @@ from deserialization import load
 
 # initialisation du dictionnaire
 dictio= load("dictio_trigrammes")
-
-def prediction (nbWords, user_input):
-    if len(user_input)>1 and (user_input[-2],user_input[-1]) in dictio :
-        return dictio[(user_input[-2],user_input[-1])].wordsPred[:nbWords]
-    elif len(user_input)>0 and (user_input[-1],) in dictio :
-        return dictio[(user_input[-1]),].wordsPred[:nbWords]
+    
+def prediction (user_input):
+    if len(user_input)>0 :
+        print("1ere condition")
+        print((user_input[-1],))
+        if  (user_input[-1],) in dictio :
+            print("ici")
+            return dictio[(user_input[-1],)].wordsPred[:5]
     else:
         return []
 

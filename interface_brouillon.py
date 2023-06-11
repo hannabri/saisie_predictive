@@ -51,7 +51,8 @@ class ChatApp:
         else:
             print("kkitz")
         # Prédire le prochain mot
-            predicted = prediction(3, words[:-1])
+            predicted = prediction(words)
+            print(words)
             print("Predicted words:", predicted)
             if predicted:
                 self.suggestions = predicted
