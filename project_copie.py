@@ -11,6 +11,12 @@ def prediction (nbWords, user_input):
     else:
         return []
 
+def prediction (nbWords, user_input):
+    if (nbWords==1) or (nbWords==2):
+        return structurePred(nbWords, dictio,predTri, user_input)
+    else:
+        return structurePred(nbWords, dictio,predBi, user_input)
+
 from trie import *
 
 trie = load("trie")
