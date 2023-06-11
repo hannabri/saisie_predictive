@@ -48,7 +48,7 @@ def predTri (nbWords, msg, dictio):
     else:
         return []
     
-def predictionTest (message, nbWords):
+def predictionTest (message, nbWords, d):
     if len(message)<=2 or nbWords>2:
         contexte = tuple(message[-1],)
         if contexte in d :
