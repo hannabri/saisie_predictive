@@ -25,9 +25,19 @@ def fullDict (d, listTokens, nbGramme):
                     d[tuple(contexte)].add_word(listTokens[i][j]) # on ajoute une occurrence au mot suivant ce contexte
 
 #mettre à jour les 10 mots les plus fréquents après chaque contexte
-def updateWordsPred (d):
-    for v in d.values() :
+def updateWordsPred (dict):
+    for v in dict.values() :
         v.update_wordsPred()
+
+def update(dict,message):
+    for i in range(1,len(message),1):
+        contexte=[]
+        for z in range (1, min(2,j),1):
+                    contexte.insert(0,message[i-z])
+                    if tuple(contexte) not in dict:
+                        dict[tuple(contexte)]=Contexte(tuple(contexte))
+                    dict[tuple(contexte)].add_word(message[i])
+                    dict[tuple(contexte)].update_wordsPred()
 
 # initialisation du dictionnaire
 def initDictio (nbGramme):
