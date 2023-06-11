@@ -35,11 +35,12 @@ class ChatApp:
         self.clear_suggestions()
 
     def on_key_release(self, event):
-        entered_text = self.message_entry.get("1.0", tk.END).strip()
-        words = entered_text.split()
+        entered_text = self.message_entry.get("1.0", tk.END)
+        words = entered_text.split(" ")
 
-        if not words[-1].endswith(" "):
-            # Suggérer des complétions pour le mot en cours
+        if entered_text[-1] != "t":
+            print(entered_text)
+        # Suggérer des complétions pour le mot en cours
             suggested = completion(words[-1])
             print("Suggested words:", suggested)
             if suggested:
@@ -47,16 +48,17 @@ class ChatApp:
                 self.display_suggestions()
             else:
                 self.clear_suggestions()
+            print("kkakit")
         else:
-            # Prédire le prochain mot
-            if len(words) >= 1:
-                predicted = prediction(3, words[:-1])
-                print("Predicted words:", predicted)
-                if predicted:
-                    self.suggestions = predicted
-                    self.display_suggestions()
-                else:
-                    self.clear_suggestions()
+            print("kkitz")
+        # Prédire le prochain mot
+            predicted = prediction(3, words[:-1])
+            print("Predicted words:", predicted)
+            if predicted:
+                self.suggestions = predicted
+                self.display_suggestions()
+            else:
+                self.clear_suggestions()
 
     def display_suggestions(self):
         self.suggestion_listbox.delete(0, tk.END)
