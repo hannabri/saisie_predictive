@@ -47,12 +47,17 @@ def predTri (nbWords, msg, dictio):
         return dictio[(msg[-1]),].wordsPred[:nbWords]
     else:
         return []
-
-def prediction (nbWords, user_input):
-    if (nbWords==1) or (nbWords==2):
-        return structurePred(nbWords, dictio,predTri, user_input)
+    
+def predictionTest (message, nbWords):
+    if len(message)<=2 or nbWords>2:
+        contexte = tuple(message[-1],)
+        if contexte in d :
+            return d[contexte)].wordsPred[:nbWords]
     else:
-        return structurePred(nbWords, dictio,predBi, user_input)
+        contexte = tuple(message[-2], message[-1])
+        if contexte in d :
+            return d[contexte)].wordsPred[:nbWords]
+        
 
 from trie import *
 
