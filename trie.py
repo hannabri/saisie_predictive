@@ -70,6 +70,7 @@ class Trie:
                 cur.children[c] = TrieNode(c)
             cur = cur.children[c]
 
+        cur.endOfWord = True
         cur.count += 1
 
     def update(self, word):
@@ -77,8 +78,7 @@ class Trie:
 
         for c in word:
             cur = cur.children[c]
-
-        cur.frequentChildren = []
+            cur.frequentChildren = []
 
 
     # def dfs(self, node, pre):
