@@ -11,24 +11,21 @@ class TrieNode:
         self.count = 0
 
 
-
 class Trie:
-    # cette classe initialise la structure du trie avec les noeuds du TrieNode
-
-    def __init__(self) -> None:
-        self.root = TrieNode("") # on initialise le trie avec la racine
+    def __init__(self):
+        self.root = TrieNode("")
 
     def insert(self, word: str) -> None:
-        cur = self.root # le noeud courant est la racine
+        cur = self.root
 
         for c in word:
             if c not in cur.children:
-                cur.children[c] = TrieNode(c) # si notre noeud courant n'a pas d'enfant avec le caractère, on crée le noeud
-            cur = cur.children[c]    
+                cur.children[c] = TrieNode(c)
+            cur = cur.children[c]
         cur.endOfWord = True
 
         if cur.endOfWord:
-            cur.count +=1
+            cur.count += 1
 
     def dfs_search(self, node, pre):
         if node.endOfWord:
@@ -37,64 +34,51 @@ class Trie:
         for child in node.children.values():
             self.dfs_search(child, pre + node.char)
 
-        
     def stock(self, prefix):
         cur = self.root
 
-        # vérifier si le préfixe existe
-        for c in prefix: 
+        for c in prefix:
             if c in cur.children:
                 cur = cur.children[c]
 
         self.output = {}
-
         self.dfs_search(cur, prefix[:-1])
 
-        # trier le dictionnaire obtenu pour avoir les trois mots avec le plus d'occurences
+        sort = dict(sorted(self.output.items(), key=lambda x: x[1], reverse=True)[:10])
 
-        sort = dict(sorted(self.output.items(), key = lambda x: x[1], reverse = True) [:10])
-        
-        # ajouter l'information dans le noeud : 
-        
-        cur.frequentChildren.extend(list(sort.keys()))
+        cur.frequentChildren = list(sort.keys())
 
     def show_most_frequent_children(self, pre):
-        
         cur = self.root
 
-        for c in pre: 
+        for c in pre:
             if c in cur.children:
                 cur = cur.children[c]
             else:
                 return []
 
-        if cur.frequentChildren == []:
+        if not cur.frequentChildren:
             self.stock(pre)
 
         return cur.frequentChildren[:5]
 
     def update_word_count(self, word):
-        
         cur = self.root
 
         for c in word:
-            if c not in cur.children: 
-                cur.children[c] = TrieNode()
+            if c not in cur.children:
+                cur.children[c] = TrieNode(c)
             cur = cur.children[c]
 
-        cur.count +=1
-
-
+        cur.count += 1
 
     def update(self, word):
-
         cur = self.root
 
-        for c in word: 
+        for c in word:
             cur = cur.children[c]
 
         cur.frequentChildren = []
-
 
 
     # def dfs(self, node, pre):
