@@ -11,27 +11,6 @@ def prediction (nbWords, user_input):
     else:
         return []
 
-def prediction (nbWords, user_input):
-    if (nbWords==1) or (nbWords==2):
-        return structurePred(nbWords, dictio,predTri, user_input)
-    else:
-<<<<<<< HEAD
-        return structurePred(nbWords, dictio,predBi, user_input)
-=======
-        return []
-    
-def predictionTest (message, nbWords, d):
-    if len(message)<=2 or nbWords>2:
-        contexte = tuple(message[-1],)
-        if contexte in d :
-            return d[contexte)].wordsPred[:nbWords]
-    else:
-        contexte = tuple(message[-2], message[-1])
-        if contexte in d :
-            return d[contexte)].wordsPred[:nbWords]
-        
->>>>>>> 1ceabee3da57afc734c4113dd31be8c47d9acee4
-
 from trie import *
 
 trie = load("trie")
