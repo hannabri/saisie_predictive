@@ -36,9 +36,10 @@ class ChatApp:
 
     def on_key_release(self, event):
         entered_text = self.message_entry.get("1.0", tk.END)
-        words = entered_text.split()
+        words = entered_text.split(" ")
 
-        if entered_text[-1] != " ":
+        if entered_text[-1] != "t":
+            print(entered_text)
         # Suggérer des complétions pour le mot en cours
             suggested = completion(words[-1])
             print("Suggested words:", suggested)
@@ -47,7 +48,9 @@ class ChatApp:
                 self.display_suggestions()
             else:
                 self.clear_suggestions()
+            print("kkakit")
         else:
+            print("kkitz")
         # Prédire le prochain mot
             predicted = prediction(3, words[:-1])
             print("Predicted words:", predicted)
@@ -56,10 +59,6 @@ class ChatApp:
                 self.display_suggestions()
             else:
                 self.clear_suggestions()
-
-
-
-
 
     def display_suggestions(self):
         self.suggestion_listbox.delete(0, tk.END)
