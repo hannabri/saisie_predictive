@@ -118,11 +118,10 @@ def completion():
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
-    trie.update_word_count(pre[:-1])
-
-def update_most_frequent_words(): 
+def update_most_frequent_words(message): 
     
-    for word in tokens :
+    for word in message :
+        trie.update_word_count(word)
         trie.update(word)
 
 
