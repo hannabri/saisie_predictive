@@ -1,10 +1,3 @@
-#%%
-# The best project !!!
-
-print("Le meileur trio :)")
-
-#%%
-
 # Part 1 : Prédiction
 
 from data_preparation import *
@@ -105,8 +98,6 @@ def prediction (nbWords):
 from trie import *
 from data_preparation import *
 from deserialization import load
-# Sérialiser le trie
-#serialization.serialize(trie, "trie.json")
 
 # Désérialiser le trie
 trie = load("trie")
@@ -120,20 +111,18 @@ def completion():
     pre = input()
     while pre[-1] != " ":
 
-        print(trie.show_most_frequent_children(pre))
+        #print(trie.show_most_frequent_children(pre))
 
-        print()
+        #print()
         
         # ajouter la prochaine lettre à notre préfix
         pre = pre + input()
 
     trie.update_word_count(pre[:-1])
 
-completion()
-
 def update_most_frequent_words(): 
     
-    for word in tokens : 
+    for word in tokens :
         trie.update(word)
 
 
@@ -150,7 +139,7 @@ from tests_prediction_completion import *
 
 
 dictio = initDictio(3)
-test = tokenize_test()
+test = load("test")
 max =0
 for i in range (1,11,1):
     for j in range (0,i+1,1):
@@ -158,7 +147,7 @@ for i in range (1,11,1):
         print("i : "+str(i)+ " -> nbB : "+str(j)+" ; "+"nbT : "+str(i-j)+" = "+str(result))
         if result>max:
             max=result
-print(max)
+#print(max)
 #for i in range(1,11,1):
 #     print(str(i)+ " mots prédits : "+str(testprediction2(test, dictio, i)))
 #prediction()

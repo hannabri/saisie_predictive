@@ -27,7 +27,7 @@ class Application(tk.Frame):
     def on_key_release(self, event):
         entered_text = self.combobox.get()
         if entered_text[-1] == " ":
-            predicted = prediction(entered_text)
+            predicted = prediction(2,entered_text)
             self.predicted_word.set(f"Predicted next word: {predicted}")
         else:
             suggested = completion(entered_text)

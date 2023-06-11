@@ -1,11 +1,5 @@
-# Le meileur trio :)
-print("Le meileur trio :)")
-
-from data_preparation import *
 from contexte import *
-import nltk
 from deserialization import load
-nltk.download('punkt')
 
 # remplir le dictionnaire
 def fullDict (d, listTokens, nbGramme):
@@ -24,12 +18,7 @@ def updateWordsPred (d):
         v.update_wordsPred()
 
 # initialisation du dictionnaire
-def initDictio (nbGramme):
-    listTokens = load("corpus")
-    dictio={}
-    fullDict(dictio, listTokens,nbGramme)
-    updateWordsPred(dictio)
-    return dictio
+dictio= load("dictio_trigrammes")
 
 def structurePred (nbWords, dictio, pred, user_input):
     msg = []
@@ -60,24 +49,16 @@ def predTri (nbWords, msg, dictio):
         return []
 
 def prediction (nbWords, user_input):
-    dictio={}
     if (nbWords==1) or (nbWords==2):
-        dictio = initDictio(3)
         return structurePred(nbWords, dictio,predTri, user_input)
     else:
-        dictio = initDictio(2)
         return structurePred(nbWords, dictio,predBi, user_input)
 
 from trie import *
-from data_preparation import *
 
 trie = load("trie")
 
-tokens = load("corpus")
-tokens_test = load("test")
-
 def completion(user_input):
-    
     pre = user_input
     while pre[-1] != " ":
         trie.update_word_count(pre[:-1])
