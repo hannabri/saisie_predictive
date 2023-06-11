@@ -38,7 +38,7 @@ class ChatApp:
         entered_text = self.message_entry.get("1.0", tk.END)
         words = entered_text.split()
 
-        if entered_text[len(entered_text)-1] != "t":
+        if entered_text[len(entered_text)-2] != " ":
             print(entered_text)
         # Suggérer des complétions pour le mot en cours
             suggested = completion(words[-1])
