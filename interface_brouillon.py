@@ -10,9 +10,10 @@ class ChatApp:
         self.message_history = tk.Text(self.root, height=20, width=50)
         self.message_history.pack()
 
-        self.message_entry = tk.Entry(self.root)
+        self.message_entry = tk.Text(self.root, height=4, width=50)
         self.message_entry.pack()
         self.message_entry.bind("<Return>", self.send_message)
+        self.message_entry.bind("<KeyRelease>", self.on_key_release)
         self.message_entry.focus_set()
 
         self.message_completion = tk.Listbox(self.root)
@@ -21,19 +22,19 @@ class ChatApp:
         self.message_completion.bind("<Return>", self.insert_selected_completion)
 
     def send_message(self, event):
-        message = self.message_entry.get()
+        message = self.message_entry.get("1.0", tk.END).strip()
         self.message_history.insert(tk.END, "Me: " + message + "\n")
-        self.message_entry.delete(0, tk.END)
+        self.message_entry.delete("1.0", tk.END)
 
         # Efface la liste de complétion
         self.clear_completion()
 
     def on_key_release(self, event):
-        entered_text = self.message_entry.get()
+        entered_text = self.message_entry.get("1.0", tk.END).strip()
 
         if entered_text.endswith(" "):
             # Prédire le prochain mot
-            predicted = prediction(nbWords, entered_text)
+            predicted = prediction(3, entered_text)
             if predicted:
                 self.display_completion(predicted)
             else:
@@ -57,9 +58,15 @@ class ChatApp:
     def insert_selected_completion(self, event):
         selection = self.message_completion.get(tk.ACTIVE)
         if selection:
-            self.message_entry.delete(0, tk.END)
-            self.message_entry.insert(tk.END, selection + " ")
-nbWords = 3
+            current_text = self.message_entry.get("1.0", tk.END).strip()
+            last_word = current_text.split(" ")[-1]
+            completed_text = current_text.rsplit(" ", 1)[0] + " " + selection
+            self.message_entry.delete("1.0", tk.END)
+            self.message_entry.insert(tk.END, completed_text)
+
+    def run(self):
+        self.root.mainloop()
+
 root = tk.Tk()
 app = ChatApp(root)
-root.mainloop()
+app.run()
