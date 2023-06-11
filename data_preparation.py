@@ -1,9 +1,6 @@
 import pandas as pd
 import string
 
-# Define emojis 
-#emojis = {"'",":-)", "<3", ":]", ";)", ";-)", ":D", ":-D", ";P", ";-P", ":P", ":-P", "8)", "8-)", ":|", ":-|", ":(", ":-(", "o_O", "o.O", ":/", ":-/", ":O", ":-O", "O_O", "O.O", "o_o"}
-
 # translation table that replaces punctuation (except "'") and digits with spaces
 translator = str.maketrans(string.punctuation.replace("'", "") + string.digits, ' ' * (len(string.punctuation) + len(string.digits) - 1))
 
