@@ -33,7 +33,7 @@ class ChatApp:
         self.message_entry.delete("1.0", tk.END)
 
         # APPELER FONCTION UPDATE
-        update(message.split()) #PROBLÈME TypeError: argument of type 'type' is not iterable
+        updatePrediction(message.split()) #PROBLÈME TypeError: argument of type 'type' is not iterable
         self.clear_suggestions()
 
     def on_key_release(self, event):
