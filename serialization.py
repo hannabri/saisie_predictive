@@ -1,6 +1,6 @@
 import pickle
 from data_preparation import *
-import trie
+from trie import Trie
 import sys
 from deserialization import load
 from dictio_prediction import *
@@ -23,7 +23,7 @@ def serialize_dict3():
         pickle.dump(dictio3, file)
 
 
-trie = trie.Trie()
+trie = Trie()
 def serialize_trie():
     # ajouter des mots dans le trie
     corpus = load("corpus")
@@ -33,7 +33,3 @@ def serialize_trie():
     with open ("trie.pkl", "wb") as file: 
         pickle.dump(trie, file)
 
-serialize_corpus()
-serialize_test()
-serialize_trie()
-serialize_dict3()
