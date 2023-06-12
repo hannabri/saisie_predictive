@@ -22,6 +22,10 @@ def serialize_dict3():
     with open("dictio_trigrammes.pkl", "wb") as file:
         pickle.dump(dictio3, file)
 
+def serialize_dict2():
+    dictio2 = initDictio(2)
+    with open("dictio_bigrammes.pkl", "wb") as file:
+        pickle.dump(dictio2, file)
 
 trie = Trie()
 def serialize_trie():

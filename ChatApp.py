@@ -27,11 +27,13 @@ class ChatApp:
         self.suggestions = []
 
     def send_message(self, event):
+
         message = self.message_entry.get("1.0", tk.END).strip()
         self.message_history.insert(tk.END, "Me: " + message + "\n")
         self.message_entry.delete("1.0", tk.END)
 
-        # Effacer la liste de complétion
+        # APPELER FONCTION UPDATE
+        update(message.split()) #PROBLÈME TypeError: argument of type 'type' is not iterable
         self.clear_suggestions()
 
     def on_key_release(self, event):
