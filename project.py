@@ -19,7 +19,7 @@ def completion(user_input):
 def updatePrediction(message):
     for i in range(1,len(message),1):
         contexte=[]
-        for z in range (1, min(2,j),1):
+        for z in range (1, min(2,i),1):
                     contexte.insert(0,message[i-z])
                     if tuple(contexte) not in dict:
                         dict[tuple(contexte)]=Contexte(tuple(contexte))
