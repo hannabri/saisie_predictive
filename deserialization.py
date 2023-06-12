@@ -1,5 +1,5 @@
 import pickle
 
-def load(object):
-    with open(str(object)+ ".pkl", "rb") as file:
+def load(object): #obejct : str
+    with open(object + ".pkl", "rb") as file:
         return pickle.load(file)
