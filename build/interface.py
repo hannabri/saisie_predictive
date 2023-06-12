@@ -1,5 +1,5 @@
 import tkinter as tk
-from build.project import *
+from project import *
 
 class ChatApp:
     def __init__(self, root):

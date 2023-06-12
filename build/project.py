@@ -1,5 +1,5 @@
-from build.deserialization import load
-from build.contexte import *
+from deserialization import load
+from contexte import *
 
 trie = load("trie")
 dictio= load("dictio_trigrammes")

@@ -1,9 +1,9 @@
 import pickle
-from build.data_preparation import *
-import build.trie as trie
+from data_preparation import *
+import trie as trie
 import sys
-from build.deserialization import load
-from build.dictio_prediction import *
+from deserialization import load
+from dictio_prediction import *
 
 sys.setrecursionlimit(10000)
 

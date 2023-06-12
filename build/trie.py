@@ -1,4 +1,4 @@
-# %% 
+
 # création des neuds du trie
 class TrieNode:
     #cette classe initalise un noeud du trie
