@@ -79,34 +79,4 @@ class Trie:
         for c in word:
             cur = cur.children[c]
             cur.frequentChildren = []
-
-
-    # def dfs(self, node, pre):
-    #     # la fonction cherche tous les mots commencants avec ce préfixe
-
-    #    if node.endOfWord:
-    #        self.output[(pre + node.char)] = node.count # si le préfixe est un mot, il sera ajouté au dictionnaire avec le nombre d'occurences
-        
-    #     # si le préfixe n'est pas un mot, on descends dans l'arbre pour chercher la fin du mot
-    #    for child in node.children.values():
-    #        self.dfs(child, pre + node.char)
-
-    
-    # def search(self, prefix: str):
-    #     cur = self.root
-        
-    #     # vérifie si le préfixe existe
-    #     for c in prefix:
-    #         if c in cur.children:
-    #             cur = cur.children[c] 
-    #         else:
-    #             return {}
             
-    #     self.output = {}
-
-    #     # cette fonction cherche tous les mots qui commencent avec ce préfixe et les ajoute à self.output
-    #     self.dfs(cur, prefix[:-1])
-
-    #     return self.output
-    
-

@@ -11,10 +11,9 @@ def prediction ( user_input):
         return []
 
 
-def completion( user_input):
+def completion(user_input):
     pre = user_input
     while pre[-1] != " ":
-        trie.update_word_count(pre[:-1])
         return trie.show_most_frequent_children(pre)
 
 def updatePrediction(message):
