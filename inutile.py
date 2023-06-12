@@ -64,14 +64,3 @@ def update(dict,message):
                     dict[tuple(contexte)].add_word(message[i])
                     dict[tuple(contexte)].update_wordsPred()
 
-def completion():
-    
-    pre = input()
-    while pre[-1] != " ":
-
-        #print(trie.show_most_frequent_children(pre))
-
-        #print()
-        
-        # ajouter la prochaine lettre à notre préfix
-        pre = pre + input()
