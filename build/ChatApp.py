@@ -2,6 +2,7 @@ import tkinter as tk
 from project import *
 from data_preparation import clean_and_tokenize
 from deserialization import load
+#from serialization import *
 
 class ChatApp:
     def __init__(self, root):
@@ -43,21 +44,19 @@ class ChatApp:
 
     def on_key_release(self, event):
 
-        entered_text = self.message_entry.get("1.0", tk.END)
+        entered_text = self.message_entry.get("1.0", "end-1c")  # "end-1c" signifie "fin moins 1 caractère"
         wordsList = entered_text.split()
 
-        if entered_text[len(entered_text)-2] != " ":
-            print(entered_text)
-        # Suggérer des complétions pour le mot en cours
+        if entered_text and entered_text[-1] != " ":
+            # Suggérer des complétions pour le mot en cours
             suggested = completion(wordsList[-1],self.trie)
-            print("Suggested wordsList:", suggested)
             if suggested:
                 self.suggestions = suggested
                 self.display_suggestions()
             else:
                 self.clear_suggestions()
         else:
-        # Prédire le prochain mot
+            # Prédire le prochain mot
             predicted = prediction(wordsList,self.dictio)
             if predicted:
                 self.suggestions = predicted
@@ -114,9 +113,10 @@ class ChatApp:
                 else:
                     completed_text = suggestion + " "
             self.message_entry.delete("1.0", tk.END)
-            self.message_entry.insert(tk.END, completed_text)
+            self.message_entry.insert(tk.END, completed_text.strip())
             self.clear_suggestions()
             self.selected_index = -1
+        return 'break'
 
     def run(self):
         self.root.mainloop()
