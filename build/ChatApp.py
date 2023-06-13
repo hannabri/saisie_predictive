@@ -5,7 +5,7 @@ from deserialization import load
 
 class ChatApp:
     def __init__(self, root):
-        self.dictio = load("dictionnaire_trigrammes")
+        self.dictio = load("dictio_trigrammes")
         self.trie = load("trie")
         self.root = root
         self.root.title("Chat App")
@@ -49,7 +49,7 @@ class ChatApp:
         if entered_text[len(entered_text)-2] != " ":
             print(entered_text)
         # Suggérer des complétions pour le mot en cours
-            suggested = completion(wordsList[-1])
+            suggested = completion(wordsList[-1],self.trie)
             print("Suggested wordsList:", suggested)
             if suggested:
                 self.suggestions = suggested
@@ -58,7 +58,7 @@ class ChatApp:
                 self.clear_suggestions()
         else:
         # Prédire le prochain mot
-            predicted = prediction(wordsList,self.trie)
+            predicted = prediction(wordsList,self.dictio)
             if predicted:
                 self.suggestions = predicted
                 self.display_suggestions()
