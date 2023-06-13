@@ -1,8 +1,12 @@
 import tkinter as tk
 from project import *
+from data_preparation import clean_and_tokenize
+from deserialization import load
 
 class ChatApp:
     def __init__(self, root):
+        self.dictio = load("dictionnaire_trigrammes")
+        self.trie = load("trie")
         self.root = root
         self.root.title("Chat App")
 
@@ -33,19 +37,20 @@ class ChatApp:
         self.message_entry.delete("1.0", tk.END)
 
         # APPELER FONCTION UPDATE
-        updatePrediction(message.split()) #PROBLÈME TypeError: argument of type 'type' is not iterable
+        updatePrediction(clean_and_tokenize(message), self.dictio)
+        updateCompletion(clean_and_tokenize(message), self.trie)
         self.clear_suggestions()
 
     def on_key_release(self, event):
 
         entered_text = self.message_entry.get("1.0", tk.END)
-        words = entered_text.split()
+        wordsList = entered_text.split()
 
         if entered_text[len(entered_text)-2] != " ":
             print(entered_text)
         # Suggérer des complétions pour le mot en cours
-            suggested = completion(words[-1])
-            print("Suggested words:", suggested)
+            suggested = completion(wordsList[-1])
+            print("Suggested wordsList:", suggested)
             if suggested:
                 self.suggestions = suggested
                 self.display_suggestions()
@@ -53,7 +58,7 @@ class ChatApp:
                 self.clear_suggestions()
         else:
         # Prédire le prochain mot
-            predicted = prediction(words)
+            predicted = prediction(wordsList,self.trie)
             if predicted:
                 self.suggestions = predicted
                 self.display_suggestions()
@@ -85,9 +90,9 @@ class ChatApp:
         if self.selected_index >= 0:
             suggestion = self.suggestions[self.selected_index]
             current_text = self.message_entry.get("1.0", tk.END).strip()
-            words = current_text.split()
-            words[-1] = suggestion  # Remplacer le dernier mot par la suggestion
-            completed_text = " ".join(words) + " "
+            wordsList = current_text.split()
+            wordsList[-1] = suggestion  # Remplacer le dernier mot par la suggestion
+            completed_text = " ".join(wordsList) + " "
             self.message_entry.delete("1.0", tk.END)
             self.message_entry.insert(tk.END, completed_text)
             self.clear_suggestions()
@@ -102,20 +107,16 @@ class ChatApp:
             if current_text[-2] == " ":
                 completed_text = current_text + suggestion + " "
             else:
-                words = current_text.split()
-                if words:  # Ensure words is not empty
-                    words[-1] = suggestion
-                    completed_text = " ".join(words) + " "
+                wordsList = current_text.split()
+                if wordsList:  # wordsList n'est pas vide
+                    wordsList[-1] = suggestion
+                    completed_text = " ".join(wordsList) + " "
                 else:
                     completed_text = suggestion + " "
             self.message_entry.delete("1.0", tk.END)
             self.message_entry.insert(tk.END, completed_text)
             self.clear_suggestions()
             self.selected_index = -1
-
-
-
-
 
     def run(self):
         self.root.mainloop()
