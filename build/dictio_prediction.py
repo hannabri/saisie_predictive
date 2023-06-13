@@ -1,7 +1,7 @@
 # Initialisation du dictionnaire de prédiction
 
-from build.data_preparation import *
-from build.contexte import *
+from data_preparation import *
+from contexte import *
 import pickle
 
 # remplir le dictionnaire

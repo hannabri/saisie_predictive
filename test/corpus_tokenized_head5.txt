@@ -1,5 +1,0 @@
-['moi', 'cest', 'sur_4', 'alors', 'cool']
-['je', 'devais', 'peutetre', 'voir', 'pre_7', 'mais', 'pas', 'de', 'nouvelles', 'sinon', 'je', 'suis', 'motivée', 'pour', 'sortir', 'ce', 'qui', 'me', 'frustre', 'donc', 'je', 'vais', 'étudier', 'je', 'pense']
-['jen', 'peut', 'pluuuuuuus', 'pre_6', 'me', 'ramène', 'chez', 'moi', 'parfait', 'parce', 'que', 'là', 'jplus', 'de', 'force']
-['sérieux', 'pourquoi', 'cool']
-['et', 'toi', 'tu', 'fait', 'quoi']
