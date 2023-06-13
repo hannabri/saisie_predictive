@@ -1,3 +1,13 @@
+"""
+Nom du fichier : contexte.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : avril 2023
+Description : classe représentant un contexte, 
+    Attributs : 
+    name (tuple) : le contexte écrit
+    allWords (dict) : l'ensemble des mots suivants le contexte et leur nombre d'occurrences 
+    wordsPred(list) : la liste des 10 mots les plus fréquents après le contexte
+"""
 import argparse
 
 # -h: Aide plus options avec ce qu'ils font
