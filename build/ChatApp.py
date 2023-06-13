@@ -13,7 +13,7 @@ class ChatApp:
         self.message_entry.pack()
         self.message_entry.bind("<Return>", self.send_message)
         self.message_entry.bind("<KeyRelease>", self.on_key_release)
-        self.message_entry.bind("<Right>", self.complete_suggestion)
+        self.message_entry.bind("<Right>", self.handle_right_arrow)
         self.message_entry.bind("<Up>", self.handle_up_arrow)
         self.message_entry.bind("<Down>", self.handle_down_arrow)
         self.message_entry.focus_set()
@@ -21,7 +21,7 @@ class ChatApp:
         self.suggestion_listbox = tk.Listbox(self.root)
         self.suggestion_listbox.pack()
         self.suggestion_listbox.bind("<Return>", self.insert_selected_suggestion)
-        self.suggestion_listbox.bind("<Right>", self.complete_suggestion)
+        self.suggestion_listbox.bind("<Right>", self.handle_right_arrow)
         
         self.selected_index = -1
         self.suggestions = []
@@ -60,10 +60,6 @@ class ChatApp:
             else:
                 self.clear_suggestions()
 
-
-
-
-
     def display_suggestions(self):
         self.suggestion_listbox.delete(0, tk.END)
         for suggestion in self.suggestions:
@@ -97,13 +93,17 @@ class ChatApp:
             self.clear_suggestions()
             self.selected_index = -1
 
-    def complete_suggestion(self, event):
+    def handle_right_arrow(self, event):
         if self.selected_index >= 0:
             suggestion = self.suggestions[self.selected_index]
             current_text = self.message_entry.get("1.0", tk.END).strip()
-            words = current_text.split()
-            words[-1] = suggestion  # Remplacer le dernier mot par la suggestion
-            completed_text = " ".join(words) + " "
+            # Si le dernier caractère est un espace, on prédit, sinon on complète.
+            if current_text[-1] == " ":
+                completed_text = current_text + suggestion + " "
+            else:
+                words = current_text.split()
+                words[-1] = suggestion
+                completed_text = " ".join(words) + " "
             self.message_entry.delete("1.0", tk.END)
             self.message_entry.insert(tk.END, completed_text)
             self.clear_suggestions()
