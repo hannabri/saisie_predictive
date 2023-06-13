@@ -96,18 +96,26 @@ class ChatApp:
     def handle_right_arrow(self, event):
         if self.selected_index >= 0:
             suggestion = self.suggestions[self.selected_index]
-            current_text = self.message_entry.get("1.0", tk.END).strip()
-            # Si le dernier caractère est un espace, on prédit, sinon on complète.
-            if current_text[-1] == " ":
+            current_text = self.message_entry.get("1.0", tk.END)
+
+        # Si le dernier caractère non vide est un espace, on prédit, sinon on complète.
+            if current_text[-2] == " ":
                 completed_text = current_text + suggestion + " "
             else:
                 words = current_text.split()
-                words[-1] = suggestion
-                completed_text = " ".join(words) + " "
+                if words:  # Ensure words is not empty
+                    words[-1] = suggestion
+                    completed_text = " ".join(words) + " "
+                else:
+                    completed_text = suggestion + " "
             self.message_entry.delete("1.0", tk.END)
             self.message_entry.insert(tk.END, completed_text)
             self.clear_suggestions()
             self.selected_index = -1
+
+
+
+
 
     def run(self):
         self.root.mainloop()
