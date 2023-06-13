@@ -113,6 +113,7 @@ class ChatApp:
                 else:
                     completed_text = suggestion + " "
             self.message_entry.delete("1.0", tk.END)
+            completed_text=completed_text.replace("\n", "")
             self.message_entry.insert(tk.END, completed_text.strip())
             self.clear_suggestions()
             self.selected_index = -1
