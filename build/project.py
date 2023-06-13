@@ -30,5 +30,3 @@ def updateCompletion(message):
     for word in message :
         trie.update_word_count(word)
         trie.update(word)
-    
-
