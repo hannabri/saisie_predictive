@@ -21,7 +21,7 @@ def updatePrediction(message, dictio):
                         dictio[tuple(contexte)]=Contexte(tuple(contexte))
                     dictio[tuple(contexte)].add_word(message[i])
                     dictio[tuple(contexte)].update_wordsPred()
-                    print("dictio correctemment updaté")
+                    print(dictio[tuple(contexte)].allWords)
 
 def updateCompletion(message,trie): 
     for word in message :
