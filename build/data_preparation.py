@@ -19,7 +19,7 @@ def tokenize_file(nameFile):
     return list_tokens
 
 def tokenize_corpus():
-    return tokenize_file('train_sms.xlsx')
+    return tokenize_file('src/train_sms.xlsx')
 
 def tokenize_test():
-    return tokenize_file('test_sms.xlsx')
+    return tokenize_file('src/test_sms.xlsx')
