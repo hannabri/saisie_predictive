@@ -1,12 +1,8 @@
 """
-Nom du fichier : contexte.py
+Nom du fichier : command_parse.py
 Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
-Date de création : avril 2023
-Description : classe représentant un contexte, 
-    Attributs : 
-    name (tuple) : le contexte écrit
-    allWords (dict) : l'ensemble des mots suivants le contexte et leur nombre d'occurrences 
-    wordsPred(list) : la liste des 10 mots les plus fréquents après le contexte
+Date de création : mai 2023
+Description : Ce fichier contient un script qui utilise le module `argparse` pour afficher l'aide en ligne.
 """
 import argparse
 
