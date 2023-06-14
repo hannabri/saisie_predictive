@@ -61,7 +61,7 @@ class ChatApp:
         entered_text = self.message_entry.get("1.0", "end-1c")  # "end-1c" signifie "fin moins 1 caractère"
         wordsList = entered_text.split()
 
-        if entered_text and entered_text[-1] != " ":
+        if entered_text and entered_text[-1] != " " and len(wordsList)!=0:
             # Suggérer des complétions pour le mot en cours
             suggested = completion(wordsList[-1],self.trie)
             if suggested:
