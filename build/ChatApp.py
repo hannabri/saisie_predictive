@@ -1,15 +1,27 @@
+import os
 import tkinter as tk
+print("importint project")
 from project import *
+print("importint dataprep")
 from data_preparation import clean_and_tokenize
+print("importint load")
 from deserialization import load
-#from serialization import *
+print("importint ser")
+from serialization import serialize
 
 class ChatApp:
     def __init__(self, root):
-        self.dictio = load("dictio_trigrammes")
-        self.trie = load("trie")
+        if os.path.exists("build/dictio_trigrammes.pkl"):
+            self.dictio = load("build/dictio_maj.pkl")
+        else:
+            self.dictio = load("build/dictio.pkl")
+        if os.path.exists("build/trie_maj.pkl"):
+            self.trie = load("build/trie_maj.pkl")
+        else:
+            self.trie = load("build/trie.pkl")
         self.root = root
         self.root.title("Chat App")
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing) #X fermer fenêtre
 
         self.message_history = tk.Text(self.root, height=20, width=50)
         self.message_history.pack()
@@ -25,7 +37,6 @@ class ChatApp:
 
         self.suggestion_listbox = tk.Listbox(self.root)
         self.suggestion_listbox.pack()
-        self.suggestion_listbox.bind("<Return>", self.insert_selected_suggestion)
         self.suggestion_listbox.bind("<Right>", self.handle_right_arrow)
         
         self.selected_index = -1
@@ -117,7 +128,12 @@ class ChatApp:
             self.message_entry.insert(tk.END, completed_text.strip())
             self.clear_suggestions()
             self.selected_index = -1
-        return 'break'
+
+    def on_closing(self):
+        print("Fermeture de l'application")
+        serialize(self.trie, "build/trie_maj.pkl")
+        serialize(self.dictio, "build/dictio_maj.pkl")
+        self.root.destroy()
 
     def run(self):
         self.root.mainloop()

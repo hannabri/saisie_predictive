@@ -1,5 +1,5 @@
 import pickle
 
-def load(object):
-    with open("build/" + str(object)+ ".pkl", "rb") as file:
+def load(fileName):
+    with open(fileName, "rb") as file:
         return pickle.load(file)

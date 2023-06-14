@@ -73,10 +73,10 @@ def testcompletionprediction (dictio, trie, corpusTest, nbWords, pdsPred, sizePr
 
 # ---------------Execution des tests-----------------
 
-tokens = load("corpus")
-tokens_test = load("test")
-trie = load("trie")
-dictio= load("dictio_trigrammes")
+tokens = load("corpus.pkl")
+tokens_test = load("test.pkl")
+trie = load("trie.pkl")
+dictio= load("dictio_trigrammes.pkl")
 
 #Infos sur le corpus
 print(f"Le taux de mots inconnus dans le corpus de test est {unkWords(tokens_test, dictio)}")
