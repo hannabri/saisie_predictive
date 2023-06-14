@@ -22,7 +22,7 @@ def updateWordsPred (dict):
 
 # initialisation du dictionnaire
 def initDictio (nbGramme):
-    with open("build/corpus.pkl", "rb") as file:
+    with open("build/data/corpus.pkl", "rb") as file:
             listTokens = pickle.load(file)
     dictio={}
     fullDict(dictio, listTokens,nbGramme)
