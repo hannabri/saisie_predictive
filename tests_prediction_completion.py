@@ -5,7 +5,7 @@ Date de création : mai 2023
 Description : Ce fichier réunit les fonctions qui ont servies à tester notre programme.
 """
 
-from serialization import *
+from build.serialization import *
 
 #Infos sur le corpus de test
 def unkWords (corpusTest, dictio):
@@ -80,10 +80,10 @@ def testcompletionprediction (dictio, trie, corpusTest, nbWords, pdsPred, sizePr
 
 # ---------------Execution des tests-----------------
 
-tokens = load("corpus.pkl")
-tokens_test = load("test.pkl")
-trie = load("trie.pkl")
-dictio= load("dictio_trigrammes.pkl")
+tokens = load("build/data/corpus.pkl")
+tokens_test = load("build/data/test.pkl")
+trie = load("build/data/trie.pkl")
+dictio= load("build/data/dictio_trigrammes.pkl")
 
 #Infos sur le corpus
 print(f"Le taux de mots inconnus dans le corpus de test est {unkWords(tokens_test, dictio)}")
