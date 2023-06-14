@@ -1,3 +1,10 @@
+"""
+Nom du fichier : chat_app.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : mai 2023
+Description : Ce fichier définit la classe ChatApp avec laquelle est créé l'interface graphique. Elle relie prédiction et complétion.
+"""
+
 import os
 import tkinter as tk
 from build.project import *

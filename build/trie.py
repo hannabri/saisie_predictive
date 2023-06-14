@@ -1,3 +1,9 @@
+"""
+Nom du fichier : trie.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : mai 2023
+Description : Ce fichier définit la classe trie pour la complétion
+"""
 
 # création des neuds du trie
 class TrieNode:

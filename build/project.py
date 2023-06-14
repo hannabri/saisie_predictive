@@ -1,3 +1,10 @@
+"""
+Nom du fichier : project.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : mai 2023
+Description : Ce fichier initialise le dictionnaire de prédiction et le trie de complétion avec les donnée du corpus.
+"""
+
 from build.contexte import *
 
 def prediction (user_input, dictio):

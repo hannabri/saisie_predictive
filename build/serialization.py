@@ -1,3 +1,10 @@
+"""
+Nom du fichier : serialization.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : mai 2023
+Description : Ce fichier définit les fonctions pour construire les fichiers pickles à partir des objets python.
+"""
+
 import pickle
 from build.data_preparation import *
 import build.trie as trie

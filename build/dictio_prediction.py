@@ -1,3 +1,10 @@
+"""
+Nom du fichier : dictio_prediction.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : mai 2023
+Description : Ce fichier construit le dictionnaire qui sert pour la prédiction.
+"""
+
 # Initialisation du dictionnaire de prédiction
 
 from build.data_preparation import *

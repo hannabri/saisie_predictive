@@ -1,3 +1,10 @@
+"""
+Nom du fichier : tests_prediction_completion.py
+Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
+Date de création : mai 2023
+Description : Ce fichier réunit les fonctions qui ont servies à tester notre programme.
+"""
+
 from serialization import *
 
 #Infos sur le corpus de test

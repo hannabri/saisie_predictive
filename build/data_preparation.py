@@ -2,7 +2,7 @@
 Nom du fichier : data_preparation.py
 Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
 Date de création : mai 2023
-Description : Ce fichier contient un script qui utilise le module `argparse` pour afficher l'aide en ligne.
+Description : Les fonctions de ce fichier servent à prétraiter le corpus afin de pouvoir faire la prédiction et la complétion.
 """
 import pandas as pd
 import string
