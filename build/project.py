@@ -1,4 +1,4 @@
-from contexte import *
+from build.contexte import *
 
 def prediction (user_input, dictio):
     if len(user_input)>0 and (user_input[-1],) in dictio :

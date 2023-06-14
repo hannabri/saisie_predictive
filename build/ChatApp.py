@@ -1,13 +1,13 @@
 import os
 import tkinter as tk
 print("importint project")
-from project import *
+from build.project import *
 print("importint dataprep")
-from data_preparation import clean_and_tokenize
+from build.data_preparation import clean_and_tokenize
 print("importint load")
-from deserialization import load
+from build.deserialization import load
 print("importint ser")
-from serialization import serialize
+from build.serialization import serialize
 
 class ChatApp:
     def __init__(self, root):
@@ -138,6 +138,6 @@ class ChatApp:
     def run(self):
         self.root.mainloop()
 
-root = tk.Tk()
-app = ChatApp(root)
-app.run()
+# root = tk.Tk()
+# app = ChatApp(root)
+# app.run()

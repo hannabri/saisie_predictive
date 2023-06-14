@@ -1,7 +1,7 @@
 # Initialisation du dictionnaire de prédiction
 
-from data_preparation import *
-from contexte import *
+from build.data_preparation import *
+from build.contexte import *
 import pickle
 
 # remplir le dictionnaire
@@ -22,7 +22,7 @@ def updateWordsPred (dict):
 
 # initialisation du dictionnaire
 def initDictio (nbGramme):
-    with open("corpus.pkl", "rb") as file:
+    with open("build/corpus.pkl", "rb") as file:
             listTokens = pickle.load(file)
     dictio={}
     fullDict(dictio, listTokens,nbGramme)
