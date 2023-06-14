@@ -7,7 +7,7 @@ Description : Ce fichier définit la classe ChatApp avec laquelle est créé l'i
 
 import os
 import tkinter as tk
-from build.project import *
+from build.initialisation_objets import *
 from build.data_preparation import clean_and_tokenize
 from build.deserialization import load
 from build.serialization import serialize
