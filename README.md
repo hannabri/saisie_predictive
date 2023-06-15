@@ -24,4 +24,4 @@ Si vous rencontrer des problémes avec notre programme, nous avons fait une aide
 
 ## Qui sommes-nous&nbsp;?
 
-Nous sommes trois étudiantes en Science de Langage parcours Linguistique et Inforamtique à l'Université Paris Cité. Ce projet dans le domaine du traitement automatique des langues constitue notre projet de fin d'année en licence 3.
+Nous sommes trois étudiantes en Science de Langage parcours Linguistique Informatique à l'Université Paris Cité. Ce projet dans le domaine du traitement automatique des langues constitue notre projet de fin d'année en licence 3.
