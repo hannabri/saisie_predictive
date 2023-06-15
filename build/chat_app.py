@@ -104,10 +104,11 @@ class ChatApp:
             suggestion = self.suggestions[self.selected_index]
             current_text = self.message_entry.get("1.0", tk.END).strip()
             wordsList = current_text.split()
-            wordsList[-1] = suggestion  # Remplacer le dernier mot par la suggestion
-            completed_text = " ".join(wordsList) + " "
+            wordsList[-1] = suggestion  # Remplace le dernier mot par la suggestion
+            completed_text = " ".join(wordsList) + " " 
             self.message_entry.delete("1.0", tk.END)
             self.message_entry.insert(tk.END, completed_text)
+            self.message_entry.mark_set(tk.INSERT, 'end')  # Place le curseur a la fin
             self.clear_suggestions()
             self.selected_index = -1
 
@@ -115,11 +116,8 @@ class ChatApp:
         if self.selected_index >= 0:
             suggestion = self.suggestions[self.selected_index]
             current_text = self.message_entry.get("1.0", tk.END)
-
-        # Si le dernier caractère non vide est un espace, on prédit, sinon on complète.
-            if current_text[-2] == " ":
-                completed_text = current_text + suggestion + " "
-            else:
+            if current_text and current_text[-2] == " ":
+                completed_text = current_text.strip() + " " + suggestion + " "
                 wordsList = current_text.split()
                 if wordsList:  # wordsList n'est pas vide
                     wordsList[-1] = suggestion
@@ -127,10 +125,12 @@ class ChatApp:
                 else:
                     completed_text = suggestion + " "
             self.message_entry.delete("1.0", tk.END)
-            completed_text=completed_text.replace("\n", "")
-            self.message_entry.insert(tk.END, completed_text.strip())
+            completed_text = completed_text.replace("\n", "")
+            self.message_entry.insert(tk.END, completed_text)
+            self.message_entry.mark_set(tk.INSERT, 'end')
             self.clear_suggestions()
             self.selected_index = -1
+
 
     def on_closing(self):
         print("Fermeture de l'application")
