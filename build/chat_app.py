@@ -117,6 +117,7 @@ class ChatApp:
             current_text = self.message_entry.get("1.0", tk.END)
             if current_text and current_text[-2] == " ":
                 completed_text = current_text.strip() + " " + suggestion + " "
+            else:
                 wordsList = current_text.split()
                 if wordsList:  # wordsList n'est pas vide
                     wordsList[-1] = suggestion
