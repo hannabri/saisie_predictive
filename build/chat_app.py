@@ -51,7 +51,6 @@ class ChatApp:
         self.message_history.insert(tk.END, "Me: " + message + "\n")
         self.message_entry.delete("1.0", tk.END)
 
-        # APPELER FONCTION UPDATE
         updatePrediction(clean_and_tokenize(message), self.dictio)
         updateCompletion(clean_and_tokenize(message), self.trie)
         self.clear_suggestions()
