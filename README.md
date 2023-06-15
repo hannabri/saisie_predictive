@@ -20,7 +20,7 @@ La saisie prédictive est surtout un outil qui facilite la rédaction des messag
 
 ## Et en cas de problème&nbsp;?
 
-Si vous rencontrer des problémes avec notre programme, nous avons fait une aide en ligne que vous pouvez accéder avec <a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/rfclara/prediction/main/aide.html?token=GHSAT0AAAAAACDPKZII6H6GLHZL2SXC5RMSZEF7DAQ">ce lien</a>.
+Si vous rencontrer des problémes avec notre programme, nous avons fait une aide en ligne que vous pouvez accéder avec <a href="https://raw.githack.com/rfclara/prediction/main/aide.html?token=GHSAT0AAAAAACDPKZIJJILQ6HLKD7YQDCQMZEK5UHQ">ce lien</a>.
 
 ## Qui sommes-nous&nbsp;?
 
