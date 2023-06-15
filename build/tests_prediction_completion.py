@@ -108,16 +108,16 @@ def df_results ():
     df_pred_results['Test prédiction'] = df_pred_results.index
     df_pred_results = df_pred_results[['Test prédiction', 'Résultat']]
     print(df_pred_results)
-    df_pred_results.to_csv('prediction_results.csv', index=False)
+    df_pred_results.to_csv('src/prediction_results.csv', index=False)
 
     df_compl_results = pd.DataFrame.from_dict(resultsCompl (trie, corpus_test), orient='index', columns=['Résultat'])
     df_compl_results['Test complétion'] = df_compl_results.index
     df_compl_results = df_compl_results[['Test complétion', 'Résultat']]
     print(df_compl_results)
-    df_compl_results.to_csv('complétion_results.csv', index=False)
+    df_compl_results.to_csv('src/complétion_results.csv', index=False)
 
     df_compl_pred_results = pd.DataFrame.from_dict(resultsComplPred (dictio,trie, corpus_test), orient='index', columns=['Résultat'])
     df_compl_pred_results['Test complétion enrichi par prédiction'] = df_compl_pred_results.index
     df_compl_pred_results = df_compl_pred_results[['Test complétion enrichi par prédiction', 'Résultat']]
     print(df_compl_pred_results)
-    df_compl_pred_results.to_csv('complétion_prediction_results.csv', index=False)
+    df_compl_pred_results.to_csv('src/complétion_prediction_results.csv', index=False)
