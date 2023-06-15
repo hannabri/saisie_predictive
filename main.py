@@ -6,10 +6,13 @@ Description : Ce fichier est le point d'entrée de l'application. Il est le prem
 """
 
 from build.chat_app import *
-from build.command_parse import aide_en_ligne
+import build.command_parse as c
+from build.tests_prediction_completion import df_results
 
-root = tk.Tk()
-app = ChatApp(root)
-app.run()
+if c.aide_en_ligne().test:
+    df_results()
 
-aide_en_ligne()
+else: 
+    root = tk.Tk()
+    app = ChatApp(root)
+    app.run()

@@ -5,8 +5,6 @@ Date de création : mai 2023
 Description : Ce fichier contient un script qui utilise le module `argparse` pour afficher l'aide en ligne.
 """
 import argparse
-import pandas as pd
-from build.tests_prediction_completion import *
 
 # -h: Aide plus options avec ce qu'ils font
 def aide_en_ligne():
@@ -20,5 +18,11 @@ def aide_en_ligne():
     parser = argparse.ArgumentParser(description=help_description)
 
     parser.add_argument("-t", "--test", required=False, action = "store_true", help="Commande pour exécuter les tests")
+
+
+    args = parser.parse_args()
+
+    return(args)
+        
 
 aide_en_ligne()
