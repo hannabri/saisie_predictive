@@ -35,7 +35,6 @@ def serialize_dict3():
 
 trie = trie.Trie()
 def serialize_trie():
-    # ajouter des mots dans le trie
     corpus = load("build/data/corpus.pkl")
     for listTokens in corpus:
         for token in listTokens:

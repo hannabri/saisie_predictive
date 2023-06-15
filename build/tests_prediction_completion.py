@@ -19,7 +19,6 @@ def unkWords (corpusTest, dictio):
     return nbUnkWords/nbWords
 
 #Partie test prediction
-
 def predictionWord(dictio, wordContexte, marge): # marge = nb de mots prédits
     return dictio[wordContexte].wordsPred[:marge] if wordContexte in dictio else []
 
@@ -48,9 +47,7 @@ def resultsPred (dictio, corpus_test):
     return d_results
 
 
-
 #Partie test complétion
-
 def testcompletion (trie, corpusTest, sizePre, nbWords):
     correct=0
     total=0
@@ -99,6 +96,7 @@ def resultsComplPred(dictio, trie, corpus_test):
             d_results[f'nb mots prédits : {i} , taille du prefixe : {j}']= testCompletionPrediction(dictio, trie,corpus_test, i, 10, j)
     return d_results
 
+#Partie dataframe
 def df_results ():
     corpus_test = load("build/data/test.pkl")
     trie = load("build/data/trie.pkl")

@@ -7,8 +7,6 @@ Description : Ce fichier définit la classe trie pour la complétion
 
 # création des neuds du trie
 class TrieNode:
-    #cette classe initalise un noeud du trie
-
     def __init__(self, char) -> None:
         self.children = {}
         self.frequentChildren = []
