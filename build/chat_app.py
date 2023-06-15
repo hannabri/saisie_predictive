@@ -24,7 +24,7 @@ class ChatApp:
             self.trie = load("build/data/trie.pkl")
         self.root = root
         self.root.title("Chat App")
-        self.root.protocol("WM_DELETE_WINDOW", self.on_closing) #X fermer fenêtre
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.message_history = tk.Text(self.root, height=20, width=50)
         self.message_history.pack()
@@ -140,7 +140,3 @@ class ChatApp:
 
     def run(self):
         self.root.mainloop()
-
-# root = tk.Tk()
-# app = ChatApp(root)
-# app.run()

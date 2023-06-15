@@ -7,7 +7,6 @@ Description : Les fonctions de ce fichier servent à prétraiter le corpus afin 
 import pandas as pd
 import string
 
-# translation table that replaces punctuation (except "'") and digits with spaces
 translator = str.maketrans(string.punctuation.replace("'", "") + string.digits, ' ' * (len(string.punctuation) + len(string.digits) - 1))
 
 def clean_and_tokenize(text):

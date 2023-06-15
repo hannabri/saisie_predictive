@@ -2,11 +2,10 @@
 Nom du fichier : command_parse.py
 Auteurs : Anna Barnay, Hanna Brinkmann, Clara Rosina Fernandez
 Date de création : mai 2023
-Description : Ce fichier contient un script qui utilise le module `argparse` pour afficher l'aide en ligne.
+Description : Ce fichier contient un script qui utilise le module `argparse` pour afficher l'aide en ligne et les tests.
 """
 import argparse
 
-# -h: Aide plus options avec ce qu'ils font
 def aide_en_ligne():
     help_description = ("Le but du programme est de vous proposer une liste des mots probables pour constituer la suite d'un message. \n" +
                         "Pour utiliser le programme, veuillez ouvrir l'interface et commencer à taper un message. Dès la première lettre, une liste de mots va vous être proposée. " +
