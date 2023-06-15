@@ -8,8 +8,8 @@ Description : Ce fichier est le point d'entrée de l'application. Il est le prem
 from build.chat_app import *
 from build.command_parse import aide_en_ligne
 
-aide_en_ligne()
-
 root = tk.Tk()
 app = ChatApp(root)
 app.run()
+
+aide_en_ligne()
